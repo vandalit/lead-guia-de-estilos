@@ -1,1 +1,1207 @@
-landing medio
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Lead Nacional — El Periódico</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Montserrat:wght@300;400;500;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0D3B66;--navy-d:#081f38;--navy-m:#153f6e;
+  --gold:#FFC107;--gold-l:#FFD54F;--gold-d:#E6A800;
+  --white:#fff;--text:#1a1a1a;--muted:#666;--soft:#F5F5F5;--mid:#EBEBEB;
+  --serif:'Playfair Display',Georgia,serif;
+  --sans:'Lato',sans-serif;--mono:'Montserrat',sans-serif;
+  --r:8px;--shadow:0 4px 24px rgba(0,0,0,.08);
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--text);background:var(--white);overflow-x:hidden}
+body.locked{overflow:hidden}
+a{text-decoration:none;color:inherit}
+img{display:block;width:100%}
+
+/* ── LOCK ── */
+#lock{position:fixed;inset:0;z-index:9999;background:var(--navy-d);display:flex;align-items:center;justify-content:center}
+#lock.out{animation:lout .65s both}
+@keyframes lout{to{opacity:0;transform:scale(1.03);visibility:hidden}}
+.lw{display:flex;flex-direction:column;align-items:center;animation:lup .75s .1s both}
+@keyframes lup{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+.l-wm{font-family:var(--serif);font-size:38px;font-weight:700;color:var(--white);letter-spacing:-.5px;margin-bottom:5px}
+.l-rule{width:170px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:0 auto 6px}
+.l-sub{font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:3.5px;text-transform:uppercase;color:rgba(255,255,255,.28);margin-bottom:48px}
+.l-pad{width:56px;height:56px;border-radius:16px;border:1.5px solid rgba(255,193,7,.22);background:rgba(255,193,7,.05);display:flex;align-items:center;justify-content:center;margin-bottom:28px;transition:border-color .3s}
+.l-pad.shake{animation:shk .4s both}
+@keyframes shk{0%,100%{transform:none}25%,75%{transform:translateX(-7px)}50%{transform:translateX(7px)}}
+.l-fi{position:relative;width:300px;margin-bottom:10px}
+.l-fi input{width:100%;padding:15px 48px 15px 20px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:8px;font-family:var(--mono);font-size:14px;font-weight:500;color:var(--white);letter-spacing:2px;outline:none;caret-color:var(--gold);transition:border-color .2s,background .2s}
+.l-fi input::placeholder{color:rgba(255,255,255,.22);letter-spacing:1px;font-size:12px}
+.l-fi input:focus{border-color:rgba(255,193,7,.45);background:rgba(255,255,255,.09)}
+.l-fi input.bad{border-color:rgba(220,50,50,.5)}
+.l-eye{position:absolute;right:14px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:rgba(255,255,255,.3);padding:4px;transition:color .2s}
+.l-err{font-family:var(--mono);font-size:10px;color:rgba(220,60,60,.75);height:14px;margin-bottom:10px;transition:opacity .2s}
+.l-err.h{opacity:0}
+.l-btn{width:300px;padding:15px;background:var(--gold);border:none;border-radius:8px;font-family:var(--mono);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2.5px;color:var(--navy-d);cursor:pointer;transition:background .2s,transform .1s}
+.l-btn:hover{background:var(--gold-l)}.l-btn:active{transform:scale(.98)}
+.l-note{margin-top:36px;font-family:var(--mono);font-size:9px;color:rgba(255,255,255,.12);letter-spacing:2px;text-transform:uppercase}
+
+/* ── SITE WRAPPER ── */
+#site{opacity:0;transition:opacity .5s}
+#site.on{opacity:1}
+
+/* ── ANNOUNCEMENT BAR ── */
+.ann{background:var(--navy);padding:8px 0;text-align:center}
+.ann-inner{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.7)}
+.ann-inner span{color:var(--gold);margin-left:6px}
+
+/* ── NAVBAR ── */
+.nav{position:sticky;top:0;z-index:100;background:var(--white);border-bottom:1px solid rgba(13,59,102,.08);transition:box-shadow .3s}
+.nav.sd{box-shadow:0 2px 20px rgba(13,59,102,.1)}
+.nav-top{display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:60px}
+.nav-logo{font-family:var(--serif);font-size:22px;font-weight:700;color:var(--navy);display:flex;align-items:center;gap:8px;flex-shrink:0}
+.nav-logo .dot{width:6px;height:6px;border-radius:50%;background:var(--gold);margin-bottom:2px}
+.nav-actions{display:flex;align-items:center;gap:16px}
+.nav-date{font-family:var(--mono);font-size:9px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:rgba(13,59,102,.35);border-right:1px solid rgba(13,59,102,.1);padding-right:16px}
+.nav-icon{width:36px;height:36px;border-radius:var(--r);border:1px solid rgba(13,59,102,.1);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s,border-color .2s;color:var(--navy);opacity:.6}
+.nav-icon:hover{background:var(--soft);opacity:1}
+.nav-sub{border-top:1px solid rgba(13,59,102,.06);padding:0 48px;overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.nav-sub::-webkit-scrollbar{display:none}
+.nav-links{display:inline-flex;gap:4px;padding:6px 0}
+.nav-link{font-family:var(--mono);font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:1.2px;color:rgba(13,59,102,.5);padding:6px 12px;border-radius:4px;cursor:pointer;transition:color .2s,background .2s;white-space:nowrap}
+.nav-link:hover{color:var(--navy);background:var(--soft)}
+.nav-link.act{color:var(--navy);border-bottom:2px solid var(--gold)}
+
+/* ── TICKER ── */
+.ticker{background:var(--navy-d);padding:8px 0;overflow:hidden;position:relative}
+.ticker::before,.ticker::after{content:'';position:absolute;top:0;bottom:0;width:80px;z-index:2;pointer-events:none}
+.ticker::before{left:0;background:linear-gradient(90deg,var(--navy-d),transparent)}
+.ticker::after{right:0;background:linear-gradient(270deg,var(--navy-d),transparent)}
+.ticker-label{position:absolute;left:0;top:0;bottom:0;display:flex;align-items:center;z-index:3;padding:0 16px;background:var(--gold)}
+.ticker-label span{font-family:var(--mono);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--navy-d)}
+.ticker-track{display:flex;gap:48px;animation:tick 38s linear infinite;padding-left:160px}
+.ticker-track:hover{animation-play-state:paused}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.tick-item{font-family:var(--mono);font-size:10px;font-weight:500;color:rgba(255,255,255,.75);white-space:nowrap;display:flex;align-items:center;gap:12px}
+.tick-item::before{content:'▶';font-size:6px;color:var(--gold);opacity:.6}
+
+/* ── HERO ── */
+.hero{position:relative;height:88vh;min-height:560px;overflow:hidden;cursor:pointer}
+.hero-bg{position:absolute;inset:0}
+.hero-gradient{position:absolute;inset:0;background:linear-gradient(135deg,#081f38 0%,#0D3B66 40%,#1a5a9a 70%,#081f38 100%)}
+.hero-pattern{position:absolute;inset:0;opacity:.04;background-image:repeating-linear-gradient(0deg,transparent,transparent 60px,rgba(255,193,7,1) 60px,rgba(255,193,7,1) 61px),repeating-linear-gradient(90deg,transparent,transparent 60px,rgba(255,193,7,1) 60px,rgba(255,193,7,1) 61px)}
+.hero-noise{position:absolute;inset:0;opacity:.03;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");background-size:180px}
+.hero-vignette{position:absolute;inset:0;background:radial-gradient(ellipse at 60% 40%,rgba(255,193,7,.08) 0,transparent 60%)}
+/* Simulated photo region */
+.hero-photo-sim{position:absolute;right:0;top:0;bottom:0;width:52%;opacity:.18;background:linear-gradient(160deg,transparent 0%,rgba(255,255,255,.05) 100%);overflow:hidden}
+.hero-photo-sim::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,var(--navy-d) 0%,transparent 40%)}
+
+.hero-content{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:64px 64px 72px;max-width:700px}
+.hero-cat{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;display:flex;align-items:center;gap:12px}
+.hero-cat::before{content:'';width:24px;height:1.5px;background:var(--gold)}
+.hero-live{display:inline-flex;align-items:center;gap:6px;background:rgba(255,60,60,.2);border:1px solid rgba(255,60,60,.3);border-radius:4px;padding:3px 10px;margin-left:8px}
+.hero-live-dot{width:5px;height:5px;border-radius:50%;background:#ff4444;animation:pulse 1.4s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.hero-live span{font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#ff7777}
+.hero-title{font-family:var(--serif);font-size:clamp(28px,4.5vw,56px);font-weight:700;line-height:1.1;color:var(--white);margin-bottom:20px}
+.hero-title em{color:var(--gold-l);font-style:italic}
+.hero-deck{font-size:16px;line-height:1.7;color:rgba(255,255,255,.65);margin-bottom:28px;max-width:540px}
+.hero-meta{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.hero-author{display:flex;align-items:center;gap:8px}
+.hero-avatar{width:32px;height:32px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:11px;font-weight:700;color:var(--navy-d)}
+.hero-byline{font-family:var(--mono);font-size:10px;color:rgba(255,255,255,.5)}
+.hero-byline strong{color:rgba(255,255,255,.8);display:block;font-size:11px}
+.hero-sep{width:1px;height:28px;background:rgba(255,255,255,.15)}
+.hero-time{font-family:var(--mono);font-size:10px;color:rgba(255,255,255,.4)}
+.hero-read{font-family:var(--mono);font-size:10px;color:rgba(255,255,255,.4);display:flex;align-items:center;gap:5px}
+.hero-cta{position:absolute;bottom:72px;right:64px;background:var(--gold);color:var(--navy-d);font-family:var(--mono);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;padding:14px 28px;border-radius:6px;border:none;cursor:pointer;display:flex;align-items:center;gap:10px;transition:background .2s,transform .15s}
+.hero-cta:hover{background:var(--gold-l);transform:translateY(-2px)}
+/* small article cards over hero */
+.hero-aside{position:absolute;right:64px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:12px;width:280px}
+.hero-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);backdrop-filter:blur(8px);border-radius:10px;padding:16px 18px;cursor:pointer;transition:background .2s,transform .2s}
+.hero-card:hover{background:rgba(255,255,255,.1);transform:translateX(-4px)}
+.hc-cat{font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.hc-title{font-family:var(--serif);font-size:14px;font-weight:600;color:var(--white);line-height:1.35;margin-bottom:8px}
+.hc-time{font-family:var(--mono);font-size:9px;color:rgba(255,255,255,.3)}
+/* progress bar */
+.hero-progress{position:absolute;bottom:0;left:0;right:0;height:3px;background:rgba(255,255,255,.1)}
+.hero-progress-bar{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-l));width:0;transition:width .4s}
+
+/* ── SECTIONS GENERIC ── */
+.section{padding:72px 0}
+.section.soft{background:var(--soft)}
+.section.dark{background:var(--navy-d)}
+.section.navy{background:var(--navy)}
+.container{max-width:1160px;margin:0 auto;padding:0 48px}
+.sec-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:36px;padding-bottom:16px;border-bottom:1px solid rgba(13,59,102,.1)}
+.sec-head.white{border-color:rgba(255,255,255,.1)}
+.sec-tag{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--navy);display:flex;align-items:center;gap:10px}
+.sec-tag::before{content:'';width:20px;height:2px;background:var(--gold)}
+.sec-tag.w{color:var(--gold)}
+.sec-tag.w::before{background:var(--gold)}
+.see-all{font-family:var(--mono);font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:rgba(13,59,102,.4);display:flex;align-items:center;gap:6px;cursor:pointer;transition:color .2s}
+.see-all:hover{color:var(--navy)}
+.see-all.w{color:rgba(255,193,7,.5)}
+.see-all.w:hover{color:var(--gold)}
+
+/* ── ESENCIAL STRIP ── */
+.esencial-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.esencial-card{border:1px solid rgba(13,59,102,.08);border-radius:12px;padding:24px 20px;background:var(--white);cursor:pointer;transition:transform .2s,box-shadow .2s,border-color .2s;position:relative;overflow:hidden}
+.esencial-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.esencial-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(13,59,102,.1);border-color:rgba(255,193,7,.3)}
+.esencial-card:hover::before{transform:scaleX(1)}
+.ec-num{font-family:var(--mono);font-size:32px;font-weight:700;color:rgba(13,59,102,.07);line-height:1;margin-bottom:12px}
+.ec-tag{font-family:var(--mono);font-size:8.5px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold-d);margin-bottom:8px}
+.ec-title{font-family:var(--serif);font-size:15px;font-weight:600;line-height:1.4;color:var(--navy);margin-bottom:12px}
+.ec-time{font-family:var(--mono);font-size:9px;color:var(--muted)}
+
+/* ── MAIN GRID ── */
+.main-grid{display:grid;grid-template-columns:1fr 340px;gap:40px;align-items:start}
+.main-articles{display:flex;flex-direction:column;gap:0}
+.article-row{display:flex;gap:24px;padding:28px 0;border-bottom:1px solid rgba(13,59,102,.07);cursor:pointer;transition:background .2s;border-radius:4px}
+.article-row:hover .art-title{color:var(--gold-d)}
+.art-img{width:140px;flex-shrink:0;height:100px;border-radius:8px;overflow:hidden;position:relative}
+.art-img-bg{width:100%;height:100%;transition:transform .4s}
+.article-row:hover .art-img-bg{transform:scale(1.05)}
+.art-body{flex:1;display:flex;flex-direction:column;gap:6px}
+.art-cat{font-family:var(--mono);font-size:8.5px;font-weight:700;letter-spacing:2px;text-transform:uppercase}
+.art-title{font-family:var(--serif);font-size:17px;font-weight:700;line-height:1.35;color:var(--text);transition:color .2s}
+.art-deck{font-size:13px;line-height:1.65;color:var(--muted)}
+.art-meta{display:flex;align-items:center;gap:12px;margin-top:6px}
+.art-author{font-family:var(--mono);font-size:9px;font-weight:600;color:var(--navy);opacity:.6}
+.art-time{font-family:var(--mono);font-size:9px;color:var(--muted)}
+.art-read{font-family:var(--mono);font-size:9px;color:var(--muted)}
+.art-dot{width:3px;height:3px;border-radius:50%;background:var(--muted)}
+
+/* ── FEATURED ARTICLE (grande) ── */
+.art-featured{padding:0 0 28px;border-bottom:1px solid rgba(13,59,102,.07);cursor:pointer;margin-bottom:4px}
+.art-feat-img{width:100%;height:220px;border-radius:10px;overflow:hidden;margin-bottom:20px;position:relative}
+.art-feat-img-bg{width:100%;height:100%;transition:transform .5s}
+.art-featured:hover .art-feat-img-bg{transform:scale(1.04)}
+.art-feat-cat{font-family:var(--mono);font-size:8.5px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}
+.art-feat-title{font-family:var(--serif);font-size:24px;font-weight:700;line-height:1.25;color:var(--text);margin-bottom:10px;transition:color .2s}
+.art-featured:hover .art-feat-title{color:var(--navy)}
+.art-feat-deck{font-size:14px;line-height:1.7;color:var(--muted);margin-bottom:14px}
+.art-feat-meta{display:flex;align-items:center;gap:10px}
+
+/* ── SIDEBAR ── */
+.sidebar{display:flex;flex-direction:column;gap:32px}
+.sidebar-widget{border-radius:12px;overflow:hidden}
+/* En Foco */
+.enfoco-widget{background:var(--navy);padding:28px 24px}
+.ef-head{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:flex;align-items:center;gap:10px}
+.ef-head::before{content:'';width:16px;height:1.5px;background:var(--gold)}
+.ef-col{display:flex;flex-direction:column;gap:0}
+.ef-item{padding:16px 0;border-bottom:1px solid rgba(255,255,255,.07);cursor:pointer}
+.ef-item:last-child{border-bottom:none;padding-bottom:0}
+.ef-item:hover .ef-title{color:var(--gold-l)}
+.ef-author{font-family:var(--mono);font-size:9px;font-weight:600;color:rgba(255,255,255,.4);margin-bottom:5px}
+.ef-title{font-family:var(--serif);font-size:14px;font-weight:600;line-height:1.35;color:rgba(255,255,255,.9);margin-bottom:6px;transition:color .2s}
+.ef-time{font-family:var(--mono);font-size:8.5px;color:rgba(255,255,255,.25)}
+/* Newsletter widget */
+.nl-widget{background:var(--gold);padding:28px 24px}
+.nl-ico{width:40px;height:40px;border-radius:10px;background:rgba(8,31,56,.12);display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+.nl-title{font-family:var(--serif);font-size:18px;font-weight:700;color:var(--navy-d);margin-bottom:8px}
+.nl-desc{font-size:12px;line-height:1.6;color:rgba(8,31,56,.6);margin-bottom:18px}
+.nl-form{display:flex;flex-direction:column;gap:8px}
+.nl-input{padding:11px 14px;border-radius:6px;border:1.5px solid rgba(8,31,56,.15);font-family:var(--mono);font-size:12px;color:var(--navy-d);background:rgba(255,255,255,.7);outline:none;transition:border-color .2s,background .2s}
+.nl-input:focus{border-color:var(--navy);background:var(--white)}
+.nl-submit{padding:11px;border-radius:6px;background:var(--navy);color:var(--white);font-family:var(--mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;border:none;cursor:pointer;transition:background .2s}
+.nl-submit:hover{background:var(--navy-m)}
+/* Trending */
+.trending-widget{background:var(--white);border:1px solid rgba(13,59,102,.08);padding:24px}
+.tw-head{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--navy);margin-bottom:18px;display:flex;align-items:center;gap:8px}
+.tw-head::before{content:'';width:14px;height:1.5px;background:var(--gold)}
+.tw-items{display:flex;flex-direction:column;gap:12px}
+.tw-item{display:flex;gap:12px;align-items:flex-start;cursor:pointer}
+.tw-num{font-family:var(--mono);font-size:22px;font-weight:700;color:rgba(13,59,102,.08);line-height:1;flex-shrink:0;width:28px}
+.tw-title{font-family:var(--serif);font-size:13px;font-weight:600;line-height:1.35;color:var(--text);transition:color .2s}
+.tw-item:hover .tw-title{color:var(--navy)}
+
+/* ── EN CIFRAS ── */
+.cifras-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.cifra-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:28px;cursor:pointer;transition:border-color .3s,background .3s}
+.cifra-card:hover{border-color:rgba(255,193,7,.3);background:rgba(255,255,255,.07)}
+.cf-tag{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.cf-title{font-family:var(--serif);font-size:18px;font-weight:700;color:var(--white);margin-bottom:4px}
+.cf-sub{font-size:12px;color:rgba(255,255,255,.4);margin-bottom:20px}
+.cf-stat{display:flex;align-items:baseline;gap:6px;margin-bottom:4px}
+.cf-num{font-family:var(--serif);font-size:42px;font-weight:700;color:var(--gold);line-height:1}
+.cf-unit{font-family:var(--mono);font-size:14px;font-weight:600;color:rgba(255,255,255,.5)}
+.cf-delta{font-family:var(--mono);font-size:11px;font-weight:600;padding:3px 8px;border-radius:4px;margin-left:8px}
+.cf-delta.up{background:rgba(50,200,100,.15);color:#4cde88}
+.cf-delta.dn{background:rgba(220,50,50,.15);color:#ff7777}
+.cf-desc{font-size:12px;color:rgba(255,255,255,.35);margin-bottom:16px}
+
+/* Chart styles */
+.chart-wrap{margin-top:8px}
+.chart-label-row{display:flex;justify-content:space-between;margin-bottom:6px}
+.chart-label{font-family:var(--mono);font-size:8px;color:rgba(255,255,255,.3)}
+
+/* ── MULTIMEDIA ── */
+.mm-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:20px}
+.mm-video{position:relative;border-radius:14px;overflow:hidden;aspect-ratio:16/9;cursor:pointer;background:var(--navy)}
+.mm-vid-bg{width:100%;height:100%;background:linear-gradient(135deg,#0a2845 0%,#1a5a9a 50%,#0D3B66 100%);transition:filter .3s}
+.mm-video:hover .mm-vid-bg{filter:brightness(1.1)}
+.mm-play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px}
+.mm-play-btn{width:60px;height:60px;border-radius:50%;background:rgba(255,193,7,.9);display:flex;align-items:center;justify-content:center;transition:transform .2s,background .2s}
+.mm-video:hover .mm-play-btn{transform:scale(1.1);background:var(--gold)}
+.mm-play-label{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.7)}
+.mm-vid-info{position:absolute;bottom:0;left:0;right:0;padding:20px;background:linear-gradient(transparent,rgba(8,31,56,.9))}
+.mm-vid-cat{font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:5px}
+.mm-vid-title{font-family:var(--serif);font-size:15px;font-weight:700;color:var(--white);line-height:1.3}
+.mm-vid-dur{font-family:var(--mono);font-size:9px;color:rgba(255,255,255,.4);margin-top:4px}
+/* gallery cards */
+.mm-gallery{display:flex;flex-direction:column;gap:12px}
+.mm-photo{border-radius:10px;overflow:hidden;cursor:pointer;position:relative}
+.mm-photo-bg{aspect-ratio:16/9;transition:transform .3s}
+.mm-photo:hover .mm-photo-bg{transform:scale(1.04)}
+.mm-photo-info{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:14px;background:linear-gradient(transparent 30%,rgba(8,31,56,.85))}
+.mm-ph-cat{font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:4px}
+.mm-ph-title{font-family:var(--serif);font-size:13px;font-weight:600;color:var(--white);line-height:1.3}
+/* podcast card */
+.mm-podcast{border-radius:10px;background:var(--navy);padding:0;overflow:hidden;display:flex;flex-direction:column;gap:0}
+.mm-pod-header{padding:20px;background:linear-gradient(135deg,var(--navy),var(--navy-m))}
+.mm-pod-ico{width:52px;height:52px;border-radius:12px;background:var(--gold);display:flex;align-items:center;justify-content:center;margin-bottom:12px}
+.mm-pod-tag{font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:6px;opacity:.8}
+.mm-pod-title{font-family:var(--serif);font-size:14px;font-weight:700;color:var(--white);line-height:1.35;margin-bottom:4px}
+.mm-pod-ep{font-family:var(--mono);font-size:9px;color:rgba(255,255,255,.35)}
+.mm-pod-player{padding:16px 20px;display:flex;flex-direction:column;gap:10px}
+.mm-progress{height:3px;background:rgba(255,255,255,.1);border-radius:2px;cursor:pointer;position:relative}
+.mm-progress-fill{width:38%;height:100%;background:var(--gold);border-radius:2px}
+.mm-progress-dot{width:8px;height:8px;border-radius:50%;background:var(--gold);position:absolute;top:50%;transform:translateY(-50%);left:38%;margin-left:-4px}
+.mm-controls{display:flex;align-items:center;justify-content:space-between}
+.mm-play-pod{width:36px;height:36px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:transform .2s}
+.mm-play-pod:hover{transform:scale(1.1)}
+.mm-pod-time{font-family:var(--mono);font-size:9px;color:rgba(255,255,255,.35)}
+
+/* ── PANORAMA / OTRAS SECCIONES ── */
+.pan-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.pan-card{border-radius:12px;overflow:hidden;cursor:pointer;background:var(--white);border:1px solid rgba(13,59,102,.08);transition:transform .2s,box-shadow .2s}
+.pan-card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.pan-img{height:140px;overflow:hidden}
+.pan-img-bg{width:100%;height:100%;transition:transform .4s}
+.pan-card:hover .pan-img-bg{transform:scale(1.06)}
+.pan-body{padding:18px}
+.pan-cat{font-family:var(--mono);font-size:8.5px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:7px}
+.pan-title{font-family:var(--serif);font-size:15px;font-weight:700;line-height:1.35;color:var(--text);margin-bottom:8px}
+.pan-time{font-family:var(--mono);font-size:9px;color:var(--muted)}
+
+/* ── MIX SECTION (verde + cultura) ── */
+.mix-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.mix-col-head{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--navy);margin-bottom:20px;padding-bottom:12px;border-bottom:2px solid var(--gold);display:flex;align-items:center;gap:8px}
+.mix-items{display:flex;flex-direction:column;gap:16px}
+.mix-item{display:flex;gap:16px;cursor:pointer;align-items:flex-start}
+.mix-item-img{width:88px;flex-shrink:0;height:66px;border-radius:7px;overflow:hidden}
+.mix-item-img-bg{width:100%;height:100%;transition:transform .3s}
+.mix-item:hover .mix-item-img-bg{transform:scale(1.06)}
+.mix-item-body{flex:1}
+.mix-cat{font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:5px}
+.mix-title{font-family:var(--serif);font-size:14px;font-weight:600;line-height:1.35;color:var(--text);margin-bottom:5px;transition:color .2s}
+.mix-item:hover .mix-title{color:var(--navy)}
+.mix-time{font-family:var(--mono);font-size:8.5px;color:var(--muted)}
+
+/* ── BIG NEWSLETTER CTA ── */
+.nl-cta{background:var(--navy-d);padding:72px 0;text-align:center}
+.nl-cta-title{font-family:var(--serif);font-size:clamp(28px,4vw,44px);font-weight:700;color:var(--white);margin-bottom:12px}
+.nl-cta-sub{font-size:15px;color:rgba(255,255,255,.5);margin-bottom:36px;max-width:480px;margin-left:auto;margin-right:auto}
+.nl-cta-form{display:flex;gap:12px;justify-content:center;max-width:480px;margin:0 auto}
+.nl-cta-input{flex:1;padding:14px 20px;border-radius:8px;border:1.5px solid rgba(255,255,255,.12);background:rgba(255,255,255,.06);color:var(--white);font-family:var(--mono);font-size:12px;outline:none;transition:border-color .2s,background .2s}
+.nl-cta-input:focus{border-color:rgba(255,193,7,.4);background:rgba(255,255,255,.09)}
+.nl-cta-input::placeholder{color:rgba(255,255,255,.2)}
+.nl-cta-btn{padding:14px 28px;background:var(--gold);color:var(--navy-d);border:none;border-radius:8px;font-family:var(--mono);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;cursor:pointer;transition:background .2s;flex-shrink:0}
+.nl-cta-btn:hover{background:var(--gold-l)}
+.nl-cta-note{font-family:var(--mono);font-size:9px;color:rgba(255,255,255,.2);margin-top:14px;letter-spacing:1px}
+
+/* ── FOOTER ── */
+footer{background:var(--navy-d);border-top:1px solid rgba(255,255,255,.06);padding:56px 0 28px}
+.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px}
+.foot-brand-logo{font-family:var(--serif);font-size:26px;font-weight:700;color:var(--white);margin-bottom:8px}
+.foot-rule{width:100px;height:1.5px;background:linear-gradient(90deg,var(--gold),transparent);margin-bottom:14px}
+.foot-claim{font-family:var(--serif);font-style:italic;font-size:13px;color:rgba(255,255,255,.3);margin-bottom:16px}
+.foot-socials{display:flex;gap:8px}
+.foot-soc{width:32px;height:32px;border-radius:7px;border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;cursor:pointer;color:rgba(255,255,255,.4);transition:color .2s,border-color .2s}
+.foot-soc:hover{color:var(--gold);border-color:rgba(255,193,7,.3)}
+.foot-col-title{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;opacity:.8}
+.foot-links{display:flex;flex-direction:column;gap:8px}
+.foot-link{font-size:12px;color:rgba(255,255,255,.35);cursor:pointer;transition:color .2s}
+.foot-link:hover{color:rgba(255,255,255,.7)}
+.foot-bottom{display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(255,255,255,.06);padding-top:24px}
+.foot-copy{font-family:var(--mono);font-size:9px;color:rgba(255,255,255,.18);letter-spacing:1px}
+.foot-badge{font-family:var(--mono);font-size:9px;color:var(--gold);opacity:.4;letter-spacing:1px}
+
+/* ── BACK TO TOP ── */
+#btt{position:fixed;bottom:32px;right:32px;width:44px;height:44px;border-radius:50%;background:var(--navy);border:1px solid rgba(255,193,7,.3);color:var(--gold);display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;transform:translateY(12px);transition:opacity .3s,transform .3s,background .2s;z-index:50}
+#btt.vis{opacity:1;transform:translateY(0)}
+#btt:hover{background:var(--navy-m)}
+
+/* ── GRADIENT HELPERS for mock images ── */
+.g-chile{background:linear-gradient(135deg,#0a2845 0%,#1a4a7a 50%,#0D3B66 100%)}
+.g-economia{background:linear-gradient(135deg,#081f38 0%,#0a3560 60%,#153f6e 100%)}
+.g-opinion{background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%)}
+.g-cifras{background:linear-gradient(135deg,#0D3B66 0%,#1a5a9a 60%,#0a2845 100%)}
+.g-global{background:linear-gradient(135deg,#081f38 0%,#1a3a5c 50%,#2a4a6e 100%)}
+.g-verde{background:linear-gradient(135deg,#1a3a28 0%,#2d5a3d 60%,#1e4a30 100%)}
+.g-cultura{background:linear-gradient(135deg,#2a1a10 0%,#4a2e1a 50%,#3a2010 100%)}
+.g-deporte{background:linear-gradient(135deg,#0a1a3a 0%,#1a2a5a 50%,#0D3B66 100%)}
+.g-tech{background:linear-gradient(135deg,#1a0a3a 0%,#2a1a5a 50%,#0D3B66 100%)}
+.g-terreno{background:linear-gradient(135deg,#2a1010 0%,#4a2020 50%,#3a1515 100%)}
+
+/* Responsive */
+@media(max-width:960px){
+  .main-grid{grid-template-columns:1fr}.sidebar{display:none}
+  .mm-grid{grid-template-columns:1fr}.cifras-grid{grid-template-columns:1fr}
+  .pan-grid{grid-template-columns:repeat(2,1fr)}.mix-grid{grid-template-columns:1fr}
+  .esencial-grid{grid-template-columns:repeat(2,1fr)}
+  .container{padding:0 24px}.hero-aside{display:none}
+  .hero-content{max-width:100%;padding:32px 28px 56px}
+  .foot-grid{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body class="locked">
+
+<!-- ═══ LOCK ═══ -->
+<div id="lock">
+  <div class="lw">
+    <span class="l-wm">Lead Nacional</span>
+    <span class="l-rule"></span>
+    <span class="l-sub">Acceso al periódico</span>
+    <div class="l-pad" id="lpad">
+      <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+        <rect x="4" y="12" width="18" height="11" rx="3" stroke="#FFC107" stroke-width="1.5"/>
+        <path d="M8.5 12V9a4.5 4.5 0 019 0v3" stroke="#FFC107" stroke-width="1.5" stroke-linecap="round"/>
+        <circle cx="13" cy="17.5" r="1.8" fill="#FFC107"/>
+        <line x1="13" y1="19.3" x2="13" y2="21" stroke="#FFC107" stroke-width="1.4" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="l-fi">
+      <input type="password" id="lpin" placeholder="Contraseña de acceso" autocomplete="off" spellcheck="false"/>
+      <button class="l-eye" id="leye">
+        <svg id="leyeico" width="17" height="17" viewBox="0 0 18 18" fill="none">
+          <path d="M1 9s3-5 8-5 8 5 8 5-3 5-8 5-8-5-8-5z" stroke="currentColor" stroke-width="1.4"/>
+          <circle cx="9" cy="9" r="2.2" stroke="currentColor" stroke-width="1.4"/>
+        </svg>
+      </button>
+    </div>
+    <p class="l-err h" id="lerr">Contraseña incorrecta. Intenta de nuevo.</p>
+    <button class="l-btn" id="lbtn">Acceder al periódico</button>
+    <p class="l-note">Lead Nacional · 2025 · Prototipo interno</p>
+  </div>
+</div>
+
+<!-- ═══ SITE ═══ -->
+<div id="site">
+
+<!-- Announcement -->
+<div class="ann">
+  <div class="ann-inner">Nuevo en Lead — <span>Newsletter diario disponible ▸ Suscríbete gratis</span></div>
+</div>
+
+<!-- Navbar -->
+<nav class="nav" id="nav">
+  <div class="nav-top">
+    <a href="#" class="nav-logo"><span class="dot"></span>Lead Nacional</a>
+    <div class="nav-actions">
+      <span class="nav-date" id="navdate"></span>
+      <!-- Search -->
+      <div class="nav-icon" title="Buscar">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="6.5" cy="6.5" r="4.5" stroke="currentColor" stroke-width="1.4"/><line x1="10" y1="10" x2="14" y2="14" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+      </div>
+      <!-- Bookmark -->
+      <div class="nav-icon" title="Guardados">
+        <svg width="14" height="16" viewBox="0 0 14 16" fill="none"><path d="M1 1.5A.5.5 0 011.5 1h11a.5.5 0 01.5.5V15l-6-3.5L1 15V1.5z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+      </div>
+      <!-- Suscribirse -->
+      <button style="background:var(--navy);color:var(--white);font-family:var(--mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;padding:8px 18px;border-radius:5px;border:none;cursor:pointer">Suscribirse</button>
+    </div>
+  </div>
+  <div class="nav-sub">
+    <div class="nav-links" id="navlinks">
+      <span class="nav-link act">Inicio</span>
+      <span class="nav-link">Lo Esencial</span>
+      <span class="nav-link">Chile Hoy</span>
+      <span class="nav-link">En Foco</span>
+      <span class="nav-link">En Terreno</span>
+      <span class="nav-link">En Cifras</span>
+      <span class="nav-link">Panorama Global</span>
+      <span class="nav-link">Futuro Verde</span>
+      <span class="nav-link">Cultura Viva</span>
+      <span class="nav-link">Juego Limpio</span>
+      <span class="nav-link">Nuevo Código</span>
+      <span class="nav-link">Quiénes Somos</span>
+    </div>
+  </div>
+</nav>
+
+<!-- Breaking Ticker -->
+<div class="ticker">
+  <div class="ticker-label"><span>En vivo</span></div>
+  <div class="ticker-track" id="ticker">
+    <span class="tick-item">Banco Central mantiene tasa de interés en 5,5% por segunda reunión consecutiva</span>
+    <span class="tick-item">Senado aprueba en general reforma previsional con 28 votos a favor</span>
+    <span class="tick-item">Argentina firma acuerdo con FMI por USD 44 mil millones — impacto regional</span>
+    <span class="tick-item">INE: IPC de octubre sube 0,4%, acumulado anual llega a 4,2%</span>
+    <span class="tick-item">La Roja enfrenta a Brasil en la próxima fecha doble FIFA — convocatoria confirmada</span>
+    <span class="tick-item">OpenAI anuncia expansión en Latinoamérica con foco en Chile y Colombia</span>
+    <span class="tick-item">Incendios en zona central: Conaf activa alerta roja en tres regiones</span>
+    <span class="tick-item">Banco Central mantiene tasa de interés en 5,5% por segunda reunión consecutiva</span>
+    <span class="tick-item">Senado aprueba en general reforma previsional con 28 votos a favor</span>
+    <span class="tick-item">Argentina firma acuerdo con FMI por USD 44 mil millones — impacto regional</span>
+    <span class="tick-item">INE: IPC de octubre sube 0,4%, acumulado anual llega a 4,2%</span>
+    <span class="tick-item">La Roja enfrenta a Brasil en la próxima fecha doble FIFA — convocatoria confirmada</span>
+    <span class="tick-item">OpenAI anuncia expansión en Latinoamérica con foco en Chile y Colombia</span>
+    <span class="tick-item">Incendios en zona central: Conaf activa alerta roja en tres regiones</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero" id="hero">
+  <div class="hero-bg">
+    <div class="hero-gradient"></div>
+    <div class="hero-pattern"></div>
+    <div class="hero-noise"></div>
+    <div class="hero-vignette"></div>
+    <!-- Simulated editorial photo -->
+    <div class="hero-photo-sim">
+      <svg width="100%" height="100%" viewBox="0 0 600 800" preserveAspectRatio="xMidYMid slice" opacity=".25">
+        <rect width="600" height="800" fill="none"/>
+        <!-- Edificio/parlamento abstracto -->
+        <rect x="150" y="400" width="300" height="350" fill="rgba(255,255,255,.04)"/>
+        <rect x="170" y="350" width="260" height="50" fill="rgba(255,255,255,.06)"/>
+        <rect x="200" y="300" width="200" height="50" fill="rgba(255,255,255,.05)"/>
+        <!-- Ventanas -->
+        <g fill="rgba(255,193,7,.08)">
+          <rect x="175" y="420" width="30" height="40" rx="2"/>
+          <rect x="215" y="420" width="30" height="40" rx="2"/>
+          <rect x="255" y="420" width="30" height="40" rx="2"/>
+          <rect x="295" y="420" width="30" height="40" rx="2"/>
+          <rect x="335" y="420" width="30" height="40" rx="2"/>
+          <rect x="375" y="420" width="30" height="40" rx="2"/>
+          <rect x="175" y="480" width="30" height="40" rx="2"/>
+          <rect x="215" y="480" width="30" height="40" rx="2"/>
+          <rect x="255" y="480" width="30" height="40" rx="2"/>
+          <rect x="295" y="480" width="30" height="40" rx="2"/>
+          <rect x="335" y="480" width="30" height="40" rx="2"/>
+          <rect x="375" y="480" width="30" height="40" rx="2"/>
+        </g>
+        <!-- Cielo abstracto -->
+        <circle cx="450" cy="150" r="80" fill="rgba(255,193,7,.03)"/>
+        <circle cx="120" cy="220" r="120" fill="rgba(255,255,255,.02)"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Hero aside cards -->
+  <div class="hero-aside">
+    <div class="hero-card">
+      <div class="hc-cat">Chile Hoy</div>
+      <div class="hc-title">Exportaciones de cobre caen 8,3% en el tercer trimestre</div>
+      <div class="hc-time">Hace 42 min</div>
+    </div>
+    <div class="hero-card">
+      <div class="hc-cat">Futuro Verde</div>
+      <div class="hc-title">Litio chileno: entre la bonanza y el costo ambiental que nadie discute</div>
+      <div class="hc-time">Hace 1 hr</div>
+    </div>
+    <div class="hero-card">
+      <div class="hc-cat">Nuevo Código</div>
+      <div class="hc-title">OpenAI abre oficina regional: ¿Por qué Chile es el siguiente destino?</div>
+      <div class="hc-time">Hace 2 hr</div>
+    </div>
+  </div>
+
+  <!-- Hero content -->
+  <div class="hero-content">
+    <div class="hero-cat">
+      Chile Hoy — Economía
+      <div class="hero-live"><div class="hero-live-dot"></div><span>Actualización</span></div>
+    </div>
+    <h1 class="hero-title">El Banco Central mantiene la tasa<br>en 5,5%: <em>¿qué significa para<br>tu crédito y tu ahorro?</em></h1>
+    <p class="hero-deck">El Consejo del Banco Central decidió por unanimidad mantener la Tasa de Política Monetaria sin cambios. Expertos advierten que el ciclo de bajas está más lento de lo esperado y explican el impacto real en familias y empresas.</p>
+    <div class="hero-meta">
+      <div class="hero-author">
+        <div class="hero-avatar">MV</div>
+        <div class="hero-byline"><strong>Matías Vera</strong>Editor Economía</div>
+      </div>
+      <div class="hero-sep"></div>
+      <span class="hero-time">Hoy · 09:42</span>
+      <div class="hero-sep"></div>
+      <span class="hero-read">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1.2"/><path d="M6 3.5V6l2 1.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+        7 min de lectura
+      </span>
+    </div>
+  </div>
+
+  <button class="hero-cta">
+    Leer nota completa
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+
+  <div class="hero-progress"><div class="hero-progress-bar" id="hpb"></div></div>
+</div>
+
+<!-- LO ESENCIAL -->
+<section class="section soft">
+  <div class="container">
+    <div class="sec-head">
+      <span class="sec-tag">Lo Esencial — Curaduría semanal</span>
+      <span class="see-all">Ver todos <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+    </div>
+    <div class="esencial-grid">
+      <div class="esencial-card">
+        <div class="ec-num">01</div>
+        <div class="ec-tag">Economía</div>
+        <div class="ec-title">Reforma previsional: qué cambia y qué sigue igual para los trabajadores</div>
+        <div class="ec-time">Hace 1 hora</div>
+      </div>
+      <div class="esencial-card">
+        <div class="ec-num">02</div>
+        <div class="ec-tag">Política</div>
+        <div class="ec-title">Aprobación presidencial cae 5 puntos en octubre, según encuesta CADEM</div>
+        <div class="ec-time">Hace 3 horas</div>
+      </div>
+      <div class="esencial-card">
+        <div class="ec-num">03</div>
+        <div class="ec-tag">Medioambiente</div>
+        <div class="ec-title">Chile presenta compromisos de reducción de emisiones del 45% al 2030 en COP</div>
+        <div class="ec-time">Ayer · 18:20</div>
+      </div>
+      <div class="esencial-card">
+        <div class="ec-num">04</div>
+        <div class="ec-tag">Tecnología</div>
+        <div class="ec-title">Tres startups chilenas levantan USD 40M en ronda liderada por fondos de Silicon Valley</div>
+        <div class="ec-time">Ayer · 14:05</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAIN: CHILE HOY + SIDEBAR -->
+<section class="section">
+  <div class="container">
+    <div class="main-grid">
+      <!-- Articles -->
+      <div class="main-articles">
+        <div class="sec-head" style="margin-bottom:24px">
+          <span class="sec-tag">Chile Hoy</span>
+          <span class="see-all">Ver sección <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+        <!-- Featured article -->
+        <div class="art-featured">
+          <div class="art-feat-img">
+            <div class="art-feat-img-bg g-chile" style="height:100%">
+              <svg width="100%" height="220" viewBox="0 0 700 220" opacity=".3">
+                <rect x="200" y="40" width="300" height="140" rx="4" fill="none" stroke="white" stroke-width="1"/>
+                <rect x="220" y="60" width="60" height="80" rx="2" fill="rgba(255,193,7,.2)"/>
+                <rect x="300" y="60" width="60" height="80" rx="2" fill="rgba(255,255,255,.05)"/>
+                <rect x="380" y="60" width="60" height="80" rx="2" fill="rgba(255,255,255,.05)"/>
+                <line x1="0" y1="185" x2="700" y2="185" stroke="rgba(255,193,7,.3)" stroke-width="1"/>
+              </svg>
+            </div>
+          </div>
+          <div class="art-feat-cat" style="color:var(--navy)">En Terreno — Reportaje especial</div>
+          <div class="art-feat-title">Agua en disputa: cómo la sequía redibuja el mapa del poder en el norte de Chile</div>
+          <div class="art-feat-deck">A lo largo de tres meses, Lead Nacional recorrió las regiones de Tarapacá y Antofagasta para documentar el conflicto entre comunidades indígenas, empresas mineras y el Estado por el control del agua. Un reportaje sobre el recurso más codiciado del siglo.</div>
+          <div class="art-feat-meta">
+            <span class="art-author" style="font-family:var(--mono);font-size:9px;font-weight:600;color:var(--navy)">Catalina Reyes</span>
+            <span class="art-dot"></span>
+            <span class="art-time">Hace 4 horas</span>
+            <span class="art-dot"></span>
+            <span class="art-read">12 min</span>
+          </div>
+        </div>
+        <!-- Regular articles -->
+        <div class="article-row">
+          <div class="art-img"><div class="art-img-bg g-economia" style="height:100%"></div></div>
+          <div class="art-body">
+            <div class="art-cat" style="color:var(--navy)">Economía</div>
+            <div class="art-title">CASEN 2024: pobreza baja a 8,6% pero desigualdad de ingresos persiste en regiones</div>
+            <div class="art-deck">El estudio reveló avances significativos en reducción de pobreza extrema, aunque la brecha entre el quintil más rico y el más pobre se mantiene en niveles históricos.</div>
+            <div class="art-meta">
+              <span class="art-author">Felipe Mora</span><span class="art-dot"></span>
+              <span class="art-time">Hace 5 hr</span><span class="art-dot"></span><span class="art-read">5 min</span>
+            </div>
+          </div>
+        </div>
+        <div class="article-row">
+          <div class="art-img"><div class="art-img-bg g-opinion" style="height:100%"></div></div>
+          <div class="art-body">
+            <div class="art-cat" style="color:#555">Política</div>
+            <div class="art-title">Senado debatirá proyecto de agua potable rural: lo que está en juego para 800 mil personas</div>
+            <div class="art-deck">El proyecto busca garantizar acceso a agua potable para comunidades rurales que aún dependen de camiones aljibe. La oposición pide acelerar el trámite legislativo.</div>
+            <div class="art-meta">
+              <span class="art-author">Andrea Soto</span><span class="art-dot"></span>
+              <span class="art-time">Hace 6 hr</span><span class="art-dot"></span><span class="art-read">4 min</span>
+            </div>
+          </div>
+        </div>
+        <div class="article-row">
+          <div class="art-img"><div class="art-img-bg g-cifras" style="height:100%"></div></div>
+          <div class="art-body">
+            <div class="art-cat" style="color:var(--navy)">Sociedad</div>
+            <div class="art-title">Radiografía de la vivienda en Chile: por qué el arriendo superó al crédito como opción principal</div>
+            <div class="art-deck">Por primera vez desde 1992, más hogares chilenos arriendan que pagan dividendo. Los datos del INE revelan una transformación silenciosa en el mercado habitacional.</div>
+            <div class="art-meta">
+              <span class="art-author">Rodrigo Pinto</span><span class="art-dot"></span>
+              <span class="art-time">Ayer · 20:15</span><span class="art-dot"></span><span class="art-read">6 min</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <!-- En Foco -->
+        <div class="sidebar-widget">
+          <div class="enfoco-widget">
+            <div class="ef-head">En Foco — Opinión</div>
+            <div class="ef-col">
+              <div class="ef-item">
+                <div class="ef-author">Ana Vera · Columnista</div>
+                <div class="ef-title">"El silencio de los datos: cuando las cifras oficiales no cuentan la historia completa"</div>
+                <div class="ef-time">Hoy · 08:00 · 6 min</div>
+              </div>
+              <div class="ef-item">
+                <div class="ef-author">Rodrigo Pinto · Analista político</div>
+                <div class="ef-title">"Democracia en tránsito: lo que el proceso constitucional nos dejó como sociedad"</div>
+                <div class="ef-time">Ayer · 18:30 · 8 min</div>
+              </div>
+              <div class="ef-item">
+                <div class="ef-author">Valentina Cruz · Economista</div>
+                <div class="ef-title">"La trampa del corto plazo: por qué Chile sigue postergando la inversión en ciencia"</div>
+                <div class="ef-time">Lun · 12:00 · 5 min</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Newsletter widget -->
+        <div class="sidebar-widget">
+          <div class="nl-widget">
+            <div class="nl-ico">
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="2" y="5" width="18" height="13" rx="2" stroke="#0D3B66" stroke-width="1.5"/><polyline points="2,7 11,13 20,7" stroke="#0D3B66" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+            </div>
+            <div class="nl-title">El resumen del día</div>
+            <div class="nl-desc">Las 5 noticias más importantes, cada mañana a las 8:00. Sin ruido, sin relleno.</div>
+            <div class="nl-form">
+              <input class="nl-input" type="email" placeholder="Tu correo electrónico"/>
+              <button class="nl-submit">Suscribirme gratis</button>
+            </div>
+          </div>
+        </div>
+        <!-- Trending -->
+        <div class="sidebar-widget" style="border-radius:12px;overflow:hidden">
+          <div class="trending-widget">
+            <div class="tw-head">Lo más leído</div>
+            <div class="tw-items">
+              <div class="tw-item">
+                <div class="tw-num">1</div>
+                <div class="tw-title">Guía completa: cómo afecta la reforma previsional a tu pensión esperada</div>
+              </div>
+              <div class="tw-item">
+                <div class="tw-num">2</div>
+                <div class="tw-title">El drama del agua en el norte: mineras vs. comunidades atacameñas</div>
+              </div>
+              <div class="tw-item">
+                <div class="tw-num">3</div>
+                <div class="tw-title">Por qué el cobre sigue siendo el gran talón de Aquiles de la economía chilena</div>
+              </div>
+              <div class="tw-item">
+                <div class="tw-num">4</div>
+                <div class="tw-title">OpenAI en Chile: qué significa la llegada de la IA a escala institucional</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EN CIFRAS -->
+<section class="section dark">
+  <div class="container">
+    <div class="sec-head white">
+      <span class="sec-tag w">En Cifras — Datos e interpretación</span>
+      <span class="see-all w">Ver todos <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+    </div>
+    <div class="cifras-grid">
+      <!-- IPC Chart -->
+      <div class="cifra-card">
+        <div class="cf-tag">Economía · Octubre 2025</div>
+        <div class="cf-title">Inflación (IPC)</div>
+        <div class="cf-sub">Variación mensual — últimos 12 meses</div>
+        <div class="cf-stat">
+          <span class="cf-num">4,2</span><span class="cf-unit">%</span>
+          <span class="cf-delta up">↑ vs 3,8% anterior</span>
+        </div>
+        <div class="cf-desc">Acumulado anual. Variación octubre: +0,4%</div>
+        <div class="chart-wrap">
+          <svg width="100%" viewBox="0 0 320 100" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="cg1" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#FFC107" stop-opacity=".3"/>
+                <stop offset="100%" stop-color="#FFC107" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <!-- grid lines -->
+            <line x1="0" y1="20" x2="320" y2="20" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+            <line x1="0" y1="50" x2="320" y2="50" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+            <line x1="0" y1="80" x2="320" y2="80" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+            <!-- Area -->
+            <path d="M0,72 L26,65 L52,58 L78,68 L104,55 L130,48 L156,62 L182,45 L208,38 L234,42 L260,30 L286,25 L320,20 L320,100 L0,100Z" fill="url(#cg1)"/>
+            <!-- Line -->
+            <path d="M0,72 L26,65 L52,58 L78,68 L104,55 L130,48 L156,62 L182,45 L208,38 L234,42 L260,30 L286,25 L320,20" fill="none" stroke="#FFC107" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <!-- Last point -->
+            <circle cx="320" cy="20" r="4" fill="#FFC107"/>
+          </svg>
+          <div class="chart-label-row">
+            <span class="chart-label">Nov '24</span>
+            <span class="chart-label">Feb '25</span>
+            <span class="chart-label">May '25</span>
+            <span class="chart-label">Ago '25</span>
+            <span class="chart-label">Oct '25</span>
+          </div>
+        </div>
+      </div>
+      <!-- Aprobación chart -->
+      <div class="cifra-card">
+        <div class="cf-tag">Política · CADEM — Octubre 2025</div>
+        <div class="cf-title">Aprobación presidencial</div>
+        <div class="cf-sub">Variación mensual — últimas 10 mediciones</div>
+        <div class="cf-stat">
+          <span class="cf-num">32</span><span class="cf-unit">%</span>
+          <span class="cf-delta dn">↓ 5 pts vs septiembre</span>
+        </div>
+        <div class="cf-desc">Mínimo histórico del período. Desaprobación: 61%</div>
+        <div class="chart-wrap">
+          <svg width="100%" viewBox="0 0 320 100" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="cg2" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#ff7777" stop-opacity=".2"/>
+                <stop offset="100%" stop-color="#ff7777" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <line x1="0" y1="20" x2="320" y2="20" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+            <line x1="0" y1="50" x2="320" y2="50" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+            <line x1="0" y1="80" x2="320" y2="80" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+            <!-- Bars -->
+            <rect x="4"   y="28" width="22" height="72" rx="2" fill="rgba(255,119,119,.2)"/>
+            <rect x="36"  y="22" width="22" height="78" rx="2" fill="rgba(255,119,119,.2)"/>
+            <rect x="68"  y="30" width="22" height="70" rx="2" fill="rgba(255,119,119,.2)"/>
+            <rect x="100" y="18" width="22" height="82" rx="2" fill="rgba(255,119,119,.2)"/>
+            <rect x="132" y="24" width="22" height="76" rx="2" fill="rgba(255,119,119,.2)"/>
+            <rect x="164" y="32" width="22" height="68" rx="2" fill="rgba(255,119,119,.2)"/>
+            <rect x="196" y="26" width="22" height="74" rx="2" fill="rgba(255,119,119,.2)"/>
+            <rect x="228" y="20" width="22" height="80" rx="2" fill="rgba(255,119,119,.2)"/>
+            <rect x="260" y="15" width="22" height="85" rx="2" fill="rgba(255,119,119,.25)"/>
+            <rect x="292" y="36" width="22" height="64" rx="2" fill="#ff7777" opacity=".5"/>
+            <!-- Trend line -->
+            <path d="M15,28 L47,22 L79,30 L111,18 L143,24 L175,32 L207,26 L239,20 L271,15 L303,36" fill="none" stroke="#ff7777" stroke-width="1.5" stroke-dasharray="3 3" stroke-linecap="round"/>
+          </svg>
+          <div class="chart-label-row">
+            <span class="chart-label">Ene</span>
+            <span class="chart-label">Mar</span>
+            <span class="chart-label">May</span>
+            <span class="chart-label">Jul</span>
+            <span class="chart-label">Sep</span>
+            <span class="chart-label">Oct</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MULTIMEDIA -->
+<section class="section soft">
+  <div class="container">
+    <div class="sec-head">
+      <span class="sec-tag">Multimedia — Video · Fotos · Podcast</span>
+      <span class="see-all">Ver todo <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+    </div>
+    <div class="mm-grid">
+      <!-- Video -->
+      <div class="mm-video">
+        <div class="mm-vid-bg g-chile"></div>
+        <div class="mm-play">
+          <div class="mm-play-btn">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M8 5l10 6-10 6V5z" fill="#0D3B66"/></svg>
+          </div>
+          <div class="mm-play-label">Reproducir video</div>
+        </div>
+        <div class="mm-vid-info">
+          <div class="mm-vid-cat">En Terreno</div>
+          <div class="mm-vid-title">Norte Grande: el reportaje que nadie quería publicar</div>
+          <div class="mm-vid-dur">▶ 14:32 · Documental Lead</div>
+        </div>
+      </div>
+      <!-- Gallery -->
+      <div class="mm-gallery">
+        <div class="mm-photo">
+          <div class="mm-photo-bg g-verde"></div>
+          <div class="mm-photo-info">
+            <div class="mm-ph-cat">Futuro Verde</div>
+            <div class="mm-ph-title">El Salar de Atacama desde el aire</div>
+          </div>
+        </div>
+        <div class="mm-photo">
+          <div class="mm-photo-bg g-cultura"></div>
+          <div class="mm-photo-info">
+            <div class="mm-ph-cat">Cultura Viva</div>
+            <div class="mm-ph-title">Festival de Viña: la previa en imágenes</div>
+          </div>
+        </div>
+      </div>
+      <!-- Podcast -->
+      <div class="mm-podcast">
+        <div class="mm-pod-header">
+          <div class="mm-pod-ico">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="10" r="5" stroke="#0D3B66" stroke-width="1.5"/><path d="M8 18c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke="#0D3B66" stroke-width="1.5" stroke-linecap="round"/><line x1="14" y1="22" x2="14" y2="26" stroke="#0D3B66" stroke-width="1.5" stroke-linecap="round"/><line x1="10" y1="26" x2="18" y2="26" stroke="#0D3B66" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <div class="mm-pod-tag">Podcast · Lead en Audio</div>
+          <div class="mm-pod-title">¿Qué nos dice el dato de inflación sobre lo que viene?</div>
+          <div class="mm-pod-ep">Ep. 47 · Con Valentina Cruz y Felipe Mora</div>
+        </div>
+        <div class="mm-pod-player">
+          <div class="mm-progress">
+            <div class="mm-progress-fill"></div>
+            <div class="mm-progress-dot"></div>
+          </div>
+          <div class="mm-controls">
+            <span class="mm-pod-time">14:22</span>
+            <div class="mm-play-pod" id="podplay">
+              <svg id="podico" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M5 3l9 5-9 5V3z" fill="#0D3B66"/></svg>
+            </div>
+            <span class="mm-pod-time">38:05</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PANORAMA GLOBAL -->
+<section class="section">
+  <div class="container">
+    <div class="sec-head">
+      <span class="sec-tag">Panorama Global — Latam y el mundo</span>
+      <span class="see-all">Ver sección <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+    </div>
+    <div class="pan-grid">
+      <div class="pan-card">
+        <div class="pan-img"><div class="pan-img-bg g-global" style="height:140px"></div></div>
+        <div class="pan-body">
+          <div class="pan-cat" style="color:var(--navy)">Argentina</div>
+          <div class="pan-title">Argentina cierra acuerdo histórico con FMI por USD 44 mil millones — cómo afecta a la región</div>
+          <div class="pan-time">Hace 3 horas</div>
+        </div>
+      </div>
+      <div class="pan-card">
+        <div class="pan-img"><div class="pan-img-bg g-global" style="height:140px;background:linear-gradient(135deg,#1a2a4a 0%,#0D3B66 50%,#2a3a5a 100%)"></div></div>
+        <div class="pan-body">
+          <div class="pan-cat" style="color:var(--navy)">Unión Europea</div>
+          <div class="pan-title">Bruselas debate aranceles a commodities latinoamericanos: qué están en riesgo para Chile</div>
+          <div class="pan-time">Hace 5 horas</div>
+        </div>
+      </div>
+      <div class="pan-card">
+        <div class="pan-img"><div class="pan-img-bg" style="height:140px;background:linear-gradient(135deg,#1a1a3a 0%,#2a2a5a 50%,#0D3B66 100%)"></div></div>
+        <div class="pan-body">
+          <div class="pan-cat" style="color:var(--navy)">Estados Unidos</div>
+          <div class="pan-title">Fed mantiene tasas sin cambios: el efecto esperado sobre el dólar y las economías emergentes</div>
+          <div class="pan-time">Ayer · 22:00</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FUTURO VERDE + CULTURA VIVA -->
+<section class="section soft">
+  <div class="container">
+    <div class="mix-grid">
+      <!-- Futuro Verde -->
+      <div>
+        <div class="mix-col-head">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 13c0 0-6-3.5-6-7a6 6 0 0112 0c0 3.5-6 7-6 7z" stroke="var(--gold)" stroke-width="1.2" fill="none"/><circle cx="7" cy="7" r="2" stroke="var(--navy)" stroke-width="1"/></svg>
+          Futuro Verde
+        </div>
+        <div class="mix-items">
+          <div class="mix-item">
+            <div class="mix-item-img"><div class="mix-item-img-bg g-verde" style="height:66px"></div></div>
+            <div class="mix-item-body">
+              <div class="mix-cat" style="color:#2d6a4f">Litio</div>
+              <div class="mix-title">El litio chileno: entre la bonanza económica y el costo ambiental del salar</div>
+              <div class="mix-time">Hace 4 horas · 8 min</div>
+            </div>
+          </div>
+          <div class="mix-item">
+            <div class="mix-item-img"><div class="mix-item-img-bg" style="height:66px;background:linear-gradient(135deg,#1a3a20 0%,#2a5a2a 100%)"></div></div>
+            <div class="mix-item-body">
+              <div class="mix-cat" style="color:#2d6a4f">Incendios</div>
+              <div class="mix-title">Temporada de incendios 2025: Conaf activa protocolo de emergencia en zona central</div>
+              <div class="mix-time">Hace 2 horas · 5 min</div>
+            </div>
+          </div>
+          <div class="mix-item">
+            <div class="mix-item-img"><div class="mix-item-img-bg" style="height:66px;background:linear-gradient(135deg,#0a2a1a 0%,#1a4a2a 100%)"></div></div>
+            <div class="mix-item-body">
+              <div class="mix-cat" style="color:#2d6a4f">COP30</div>
+              <div class="mix-title">Chile en la cima climática: compromisos versus realidad de las emisiones nacionales</div>
+              <div class="mix-time">Ayer · 16:30 · 6 min</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Cultura Viva -->
+      <div>
+        <div class="mix-col-head">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 13V6l4-5 4 5v7" stroke="var(--gold)" stroke-width="1.2" fill="none"/><circle cx="7" cy="9" r="1.5" stroke="var(--navy)" stroke-width="1"/></svg>
+          Cultura Viva
+        </div>
+        <div class="mix-items">
+          <div class="mix-item">
+            <div class="mix-item-img"><div class="mix-item-img-bg g-cultura" style="height:66px"></div></div>
+            <div class="mix-item-body">
+              <div class="mix-cat" style="color:#6d4c41">Festival</div>
+              <div class="mix-title">Viña 2026: cartel confirmado, fechas y lo que esperan los fanáticos de la región</div>
+              <div class="mix-time">Hace 6 horas · 4 min</div>
+            </div>
+          </div>
+          <div class="mix-item">
+            <div class="mix-item-img"><div class="mix-item-img-bg" style="height:66px;background:linear-gradient(135deg,#2a1010 0%,#5a2a10 100%)"></div></div>
+            <div class="mix-item-body">
+              <div class="mix-cat" style="color:#6d4c41">Cine</div>
+              <div class="mix-title">Pablo Larraín prepara nuevo largometraje: entre lo íntimo y lo político en la historia de Chile</div>
+              <div class="mix-time">Ayer · 11:00 · 5 min</div>
+            </div>
+          </div>
+          <div class="mix-item">
+            <div class="mix-item-img"><div class="mix-item-img-bg" style="height:66px;background:linear-gradient(135deg,#1a0a1a 0%,#4a1a3a 100%)"></div></div>
+            <div class="mix-item-body">
+              <div class="mix-cat" style="color:#6d4c41">Literatura</div>
+              <div class="mix-title">Temporada de libros 2025: los cinco títulos chilenos que no puedes perderte este verano</div>
+              <div class="mix-time">Hace 8 horas · 3 min</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- JUEGO LIMPIO + NUEVO CÓDIGO (2-col minor) -->
+<section class="section">
+  <div class="container">
+    <div class="mix-grid">
+      <!-- Juego Limpio -->
+      <div>
+        <div class="mix-col-head">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="var(--gold)" stroke-width="1.2"/><path d="M4 7c1-1.5 2-2 3-2s2 .5 3 2" stroke="var(--navy)" stroke-width="1" stroke-linecap="round" fill="none"/></svg>
+          Juego Limpio
+        </div>
+        <div class="mix-items">
+          <div class="mix-item">
+            <div class="mix-item-img"><div class="mix-item-img-bg g-deporte" style="height:66px"></div></div>
+            <div class="mix-item-body">
+              <div class="mix-cat" style="color:#1565c0">Selección</div>
+              <div class="mix-title">La Roja convoca 23 jugadores para la fecha FIFA de noviembre: lista completa</div>
+              <div class="mix-time">Hace 2 horas · 3 min</div>
+            </div>
+          </div>
+          <div class="mix-item">
+            <div class="mix-item-img"><div class="mix-item-img-bg" style="height:66px;background:linear-gradient(135deg,#0a0a2a 0%,#1a1a4a 100%)"></div></div>
+            <div class="mix-item-body">
+              <div class="mix-cat" style="color:#1565c0">Fútbol</div>
+              <div class="mix-title">Colo-Colo vs Flamengo: el análisis táctico del duelo más esperado de la Copa Libertadores</div>
+              <div class="mix-time">Ayer · 20:00 · 5 min</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Nuevo Código -->
+      <div>
+        <div class="mix-col-head">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="3" width="12" height="8" rx="1.5" stroke="var(--gold)" stroke-width="1.2" fill="none"/><path d="M5 6L3.5 7 5 8" stroke="var(--navy)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M9 6l1.5 1L9 8" stroke="var(--navy)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line x1="7.5" y1="5.5" x2="6.5" y2="8.5" stroke="var(--gold)" stroke-width="1" stroke-linecap="round"/></svg>
+          Nuevo Código
+        </div>
+        <div class="mix-items">
+          <div class="mix-item">
+            <div class="mix-item-img"><div class="mix-item-img-bg g-tech" style="height:66px"></div></div>
+            <div class="mix-item-body">
+              <div class="mix-cat" style="color:#6a1aaa">IA</div>
+              <div class="mix-title">OpenAI en Chile: lo que significa la llegada de la inteligencia artificial a escala institucional</div>
+              <div class="mix-time">Hace 2 hr · 6 min</div>
+            </div>
+          </div>
+          <div class="mix-item">
+            <div class="mix-item-img"><div class="mix-item-img-bg" style="height:66px;background:linear-gradient(135deg,#0a0520 0%,#1a0a40 100%)"></div></div>
+            <div class="mix-item-body">
+              <div class="mix-cat" style="color:#6a1aaa">Startups</div>
+              <div class="mix-title">Tres startups chilenas levantan USD 40M: el ecosistema que Silicon Valley ya no puede ignorar</div>
+              <div class="mix-time">Ayer · 14:05 · 5 min</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER CTA -->
+<div class="nl-cta">
+  <div class="container">
+    <h2 class="nl-cta-title">El periodismo que <em style="font-style:italic;color:var(--gold)">importa,</em><br>en tu correo cada mañana</h2>
+    <p class="nl-cta-sub">Sin ruido. Sin algoritmos. Solo las historias que necesitas para entender Chile y el mundo.</p>
+    <div class="nl-cta-form">
+      <input class="nl-cta-input" type="email" placeholder="nombre@correo.cl"/>
+      <button class="nl-cta-btn">Suscribirme</button>
+    </div>
+    <p class="nl-cta-note">Gratis · Sin spam · Cancela cuando quieras</p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand-logo">Lead Nacional</div>
+        <div class="foot-rule"></div>
+        <div class="foot-claim">"La línea que marca la diferencia."</div>
+        <div class="foot-socials">
+          <div class="foot-soc" title="Instagram">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1.5" y="1.5" width="11" height="11" rx="3" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="7" r="2.5" stroke="currentColor" stroke-width="1.3"/><circle cx="10.5" cy="3.5" r=".7" fill="currentColor"/></svg>
+          </div>
+          <div class="foot-soc" title="X / Twitter">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 1.5l5 6L1 13h2l3.8-4.3L10 13h3L8 6.8 12.5 1.5h-2L7 5.5 3.5 1.5H1z" fill="currentColor"/></svg>
+          </div>
+          <div class="foot-soc" title="LinkedIn">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="1" width="12" height="12" rx="2.5" stroke="currentColor" stroke-width="1.2"/><line x1="4" y1="6" x2="4" y2="10" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><line x1="4" y1="4.2" x2="4" y2="4.8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M6.5 10V7.8C6.5 6.8 7.2 6.2 8 6.2s1.5.6 1.5 1.6V10" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="foot-col-title">Secciones</div>
+        <div class="foot-links">
+          <span class="foot-link">Lo Esencial</span>
+          <span class="foot-link">Chile Hoy</span>
+          <span class="foot-link">En Foco</span>
+          <span class="foot-link">En Terreno</span>
+          <span class="foot-link">En Cifras</span>
+        </div>
+      </div>
+      <div>
+        <div class="foot-col-title">Más</div>
+        <div class="foot-links">
+          <span class="foot-link">Panorama Global</span>
+          <span class="foot-link">Futuro Verde</span>
+          <span class="foot-link">Cultura Viva</span>
+          <span class="foot-link">Juego Limpio</span>
+          <span class="foot-link">Nuevo Código</span>
+        </div>
+      </div>
+      <div>
+        <div class="foot-col-title">Nosotros</div>
+        <div class="foot-links">
+          <span class="foot-link">Quiénes Somos</span>
+          <span class="foot-link">Equipo Editorial</span>
+          <span class="foot-link">Contacto</span>
+          <span class="foot-link">Podcast</span>
+          <span class="foot-link">Newsletter</span>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span class="foot-copy">© 2025 Lead Nacional · Todos los derechos reservados · Santiago, Chile</span>
+      <span class="foot-badge">Periodismo · Análisis · Liderazgo</span>
+    </div>
+  </div>
+</footer>
+
+</div><!-- /#site -->
+
+<!-- Back to top -->
+<div id="btt" title="Volver arriba">
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 12V4M4 8l4-4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</div>
+
+<script>
+/* ── LOCK ── */
+const PASS='contraseñadelead';
+const lock=document.getElementById('lock'),lpad=document.getElementById('lpad');
+const lpin=document.getElementById('lpin'),lbtn=document.getElementById('lbtn');
+const lerr=document.getElementById('lerr'),leye=document.getElementById('leye');
+const leyeico=document.getElementById('leyeico'),site=document.getElementById('site');
+
+function showSite(){
+  lock.classList.add('out');
+  site.classList.add('on');
+  document.body.classList.remove('locked');
+}
+if(sessionStorage.getItem('lead_auth')==='1'){
+  lock.style.display='none';site.classList.add('on');document.body.classList.remove('locked');
+} else {setTimeout(()=>lpin.focus(),200)}
+
+function tryPass(){
+  if(lpin.value===PASS){sessionStorage.setItem('lead_auth','1');showSite();}
+  else{
+    lpin.classList.add('bad');lpad.classList.add('shake');
+    lerr.classList.remove('h');lpin.value='';
+    setTimeout(()=>{lpin.classList.remove('bad');lpad.classList.remove('shake');},500);
+    setTimeout(()=>lpin.focus(),60);
+  }
+}
+lbtn.addEventListener('click',tryPass);
+lpin.addEventListener('keydown',e=>{if(e.key==='Enter')tryPass()});
+let eyeOn=false;
+leye.addEventListener('click',()=>{
+  eyeOn=!eyeOn;lpin.type=eyeOn?'text':'password';
+  leyeico.innerHTML=eyeOn
+    ?'<path d="M2 2l14 14M7.5 7.8a2.2 2.2 0 003 3M1 9s3-5 8-5c1.4 0 2.7.3 3.8.8M17 9s-1.3 2-3.5 3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>'
+    :'<path d="M1 9s3-5 8-5 8 5 8 5-3 5-8 5-8-5-8-5z" stroke="currentColor" stroke-width="1.4"/><circle cx="9" cy="9" r="2.2" stroke="currentColor" stroke-width="1.4"/>';
+  leye.style.color=eyeOn?'rgba(255,193,7,.7)':'rgba(255,255,255,.3)';
+});
+
+/* ── NAVBAR date ── */
+const d=new Date();
+const dias=['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+const meses=['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+document.getElementById('navdate').textContent=`${dias[d.getDay()]}, ${d.getDate()} de ${meses[d.getMonth()]} ${d.getFullYear()}`;
+
+/* ── NAV SCROLL + ACTIVE ── */
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{
+  nav.classList.toggle('sd',window.scrollY>80);
+  document.getElementById('btt').classList.toggle('vis',window.scrollY>400);
+  const h=document.getElementById('hero');
+  const pct=Math.min(100,window.scrollY/h.offsetHeight*100);
+  document.getElementById('hpb').style.width=pct+'%';
+});
+document.querySelectorAll('.nav-link').forEach(l=>{
+  l.addEventListener('click',function(){
+    document.querySelectorAll('.nav-link').forEach(x=>x.classList.remove('act'));
+    this.classList.add('act');
+  });
+});
+
+/* ── BACK TO TOP ── */
+document.getElementById('btt').addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+/* ── PODCAST PLAY ── */
+let playing=false;
+document.getElementById('podplay').addEventListener('click',function(){
+  playing=!playing;
+  document.getElementById('podico').innerHTML=playing
+    ?'<rect x="4" y="3" width="3" height="10" rx="1" fill="#0D3B66"/><rect x="9" y="3" width="3" height="10" rx="1" fill="#0D3B66"/>'
+    :'<path d="M5 3l9 5-9 5V3z" fill="#0D3B66"/>';
+});
+
+/* ── DUPLICATE TICKER for seamless loop ── */
+const tr=document.getElementById('ticker');
+tr.innerHTML+=tr.innerHTML;
+</script>
+</body>
+</html>
