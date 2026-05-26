@@ -306,11 +306,7 @@ lbtn.addEventListener('click',tryPass);
 lpin.addEventListener('keydown',e=>{if(e.key==='Enter')tryPass()});
 let ey=false;
 leye.addEventListener('click',()=>{ey=!ey;lpin.type=ey?'text':'password'});
-window.addEventListener('scroll',()=>{
-  const p=document.getElementById('prog');
-  const h=document.documentElement.scrollHeight-window.innerHeight;
-  p.style.width=(window.scrollY/h*100)+'%';
-});
+/* prog bar handled by anuncios.js */;
 </script>
 </body>
 </html>
