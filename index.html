@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lead Nacional — Guía de Marca</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Montserrat:wght@300;400;500;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --navy:#0D3B66;
+  --navy-deep:#081f38;
+  --navy-mid:#153f6e;
+  --gold:#FFC107;
+  --gold-light:#FFD54F;
+  --gold-dark:#E6A800;
+  --white:#FFFFFF;
+  --text:#333333;
+  --bg-soft:#F5F5F5;
+  --bg-mid:#EBEBEB;
+  --serif:'Playfair Display',Georgia,serif;
+  --sans:'Lato',sans-serif;
+  --mono:'Montserrat',sans-serif;
+}
+
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--text);background:var(--white);overflow-x:hidden}
+
+/* ─── NAVBAR ─── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(255,255,255,0.97);
+  border-bottom:1px solid rgba(13,59,102,0.08);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 48px;height:64px;
+  transition:box-shadow .3s;
+}
+nav.scrolled{box-shadow:0 2px 24px rgba(13,59,102,0.12)}
+.nav-logo{
+  font-family:var(--serif);font-size:22px;font-weight:700;
+  color:var(--navy);letter-spacing:-.5px;text-decoration:none;
+  display:flex;align-items:center;gap:10px;
+}
+.nav-logo .gold-dot{
+  width:7px;height:7px;border-radius:50%;
+  background:var(--gold);display:inline-block;margin-bottom:2px;
+}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{
+  font-family:var(--mono);font-size:11px;font-weight:600;
+  text-transform:uppercase;letter-spacing:1.4px;
+  color:var(--navy);text-decoration:none;opacity:.6;
+  transition:opacity .2s;
+}
+.nav-links a:hover{opacity:1}
+
+/* ─── HERO ─── */
+#hero{
+  min-height:100vh;background:var(--navy-deep);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:80px 48px 64px;position:relative;overflow:hidden;
+  text-align:center;
+}
+.hero-texture{
+  position:absolute;inset:0;
+  background-image:
+    radial-gradient(circle at 20% 80%,rgba(255,193,7,.05) 0,transparent 50%),
+    radial-gradient(circle at 80% 20%,rgba(255,193,7,.04) 0,transparent 40%);
+  pointer-events:none;
+}
+.hero-grid{
+  position:absolute;inset:0;opacity:.04;
+  background-image:linear-gradient(rgba(255,193,7,.8) 1px,transparent 1px),linear-gradient(90deg,rgba(255,193,7,.8) 1px,transparent 1px);
+  background-size:60px 60px;
+  pointer-events:none;
+}
+.hero-eyebrow{
+  font-family:var(--mono);font-size:10px;font-weight:700;
+  letter-spacing:3px;text-transform:uppercase;
+  color:var(--gold);margin-bottom:40px;
+  display:flex;align-items:center;gap:16px;
+}
+.hero-eyebrow::before,.hero-eyebrow::after{
+  content:'';flex:1;max-width:64px;height:1px;background:var(--gold);opacity:.5;
+}
+.hero-logo-svg{margin-bottom:24px}
+.hero-divider{
+  width:64px;height:2px;background:var(--gold);margin:28px auto;
+  animation:grow .8s .4s both;
+}
+@keyframes grow{from{width:0}to{width:64px}}
+.hero-claim{
+  font-family:var(--serif);font-size:clamp(16px,2.5vw,22px);
+  font-style:italic;color:rgba(255,255,255,.7);
+  letter-spacing:.5px;margin-bottom:12px;
+}
+.hero-claim-alt{
+  font-family:var(--mono);font-size:10px;font-weight:500;
+  letter-spacing:2.5px;text-transform:uppercase;
+  color:rgba(255,193,7,.55);margin-top:8px;
+}
+.scroll-cue{
+  position:absolute;bottom:32px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  animation:float 2s ease-in-out infinite;
+}
+@keyframes float{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
+.scroll-cue span{font-family:var(--mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.3)}
+.scroll-cue svg{opacity:.3}
+
+/* ─── SECTION GENERIC ─── */
+section{padding:96px 0}
+.container{max-width:1100px;margin:0 auto;padding:0 48px}
+.section-tag{
+  font-family:var(--mono);font-size:10px;font-weight:700;
+  letter-spacing:3px;text-transform:uppercase;
+  color:var(--gold);margin-bottom:12px;display:block;
+}
+.section-tag.dark{color:var(--navy);opacity:.5}
+.section-title{
+  font-family:var(--serif);font-size:clamp(28px,4vw,48px);
+  font-weight:700;line-height:1.15;color:var(--navy);
+  margin-bottom:16px;
+}
+.section-title.white{color:var(--white)}
+.section-lead{
+  font-size:16px;line-height:1.75;color:rgba(51,51,51,.65);
+  max-width:600px;margin-bottom:56px;
+}
+.section-lead.white{color:rgba(255,255,255,.6)}
+
+/* ─── LOGO SECTION ─── */
+#logo{background:var(--bg-soft)}
+.logo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:8px}
+.logo-card{
+  border-radius:12px;padding:48px 32px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:24px;aspect-ratio:4/3;
+}
+.logo-card.on-navy{background:var(--navy)}
+.logo-card.on-white{background:var(--white);border:1px solid rgba(13,59,102,.1)}
+.logo-card.on-gold{background:var(--gold)}
+.logo-label{
+  font-family:var(--mono);font-size:10px;font-weight:600;
+  letter-spacing:2px;text-transform:uppercase;
+  color:rgba(51,51,51,.4);
+}
+.logo-card.on-navy .logo-label{color:rgba(255,255,255,.3)}
+.logo-card.on-gold .logo-label{color:rgba(13,59,102,.5)}
+
+/* ─── COLORES ─── */
+#colores{background:var(--white)}
+.palette-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:20px;margin-bottom:40px}
+.swatch{border-radius:12px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.06)}
+.swatch-color{height:120px}
+.swatch-info{padding:16px;background:var(--white);border:1px solid rgba(0,0,0,.06);border-top:none;border-radius:0 0 12px 12px}
+.swatch-name{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--navy);margin-bottom:4px}
+.swatch-hex{font-family:'Courier New',monospace;font-size:12px;color:rgba(51,51,51,.5)}
+.swatch-use{font-size:10px;color:rgba(51,51,51,.4);margin-top:6px;font-family:var(--mono);letter-spacing:.5px}
+.usage-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
+.usage-card{
+  padding:20px 24px;border-radius:10px;
+  border-left:3px solid var(--gold);
+  background:var(--bg-soft);
+}
+.usage-card h4{font-family:var(--mono);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--navy);margin-bottom:8px}
+.usage-card p{font-size:13px;line-height:1.6;color:rgba(51,51,51,.6)}
+
+/* ─── TIPOGRAFÍA ─── */
+#tipografia{background:var(--bg-soft)}
+.type-showcase{display:flex;flex-direction:column;gap:40px}
+.type-block{
+  background:var(--white);border-radius:12px;padding:40px 48px;
+  border:1px solid rgba(13,59,102,.06);
+}
+.type-meta{
+  display:flex;align-items:center;gap:16px;margin-bottom:24px;
+  padding-bottom:16px;border-bottom:1px solid rgba(13,59,102,.08);
+}
+.type-tag{
+  font-family:var(--mono);font-size:10px;font-weight:700;
+  text-transform:uppercase;letter-spacing:2px;
+  background:var(--navy);color:var(--white);
+  padding:4px 12px;border-radius:20px;
+}
+.type-family{font-size:12px;color:rgba(51,51,51,.4);font-family:var(--mono)}
+.type-sample-playfair{font-family:var(--serif);font-size:clamp(36px,5vw,64px);font-weight:700;line-height:1.1;color:var(--navy)}
+.type-sample-playfair em{color:var(--gold);font-style:italic}
+.type-sample-mono{font-family:var(--mono);font-size:13px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--navy);opacity:.6}
+.type-scale{display:flex;flex-direction:column;gap:8px;margin-top:20px}
+.type-scale-row{display:flex;align-items:baseline;gap:16px}
+.type-scale-label{font-family:var(--mono);font-size:10px;color:rgba(51,51,51,.35);min-width:80px}
+.type-weights{display:flex;gap:32px;flex-wrap:wrap;margin-top:16px}
+.type-weight-item{display:flex;flex-direction:column;gap:4px}
+.type-weight-item span:first-child{font-family:var(--mono);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(51,51,51,.35)}
+
+/* ─── VOZ EDITORIAL ─── */
+#voz{background:var(--navy)}
+.voz-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-bottom:48px}
+.voz-card{
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:12px;padding:32px;
+  background:rgba(255,255,255,.04);
+  transition:background .3s,border-color .3s;
+  cursor:default;
+}
+.voz-card:hover{background:rgba(255,255,255,.07);border-color:rgba(255,193,7,.3)}
+.voz-icon{margin-bottom:20px}
+.voz-title{font-family:var(--serif);font-size:20px;font-weight:700;color:var(--white);margin-bottom:8px}
+.voz-desc{font-size:14px;line-height:1.75;color:rgba(255,255,255,.55)}
+.voz-example{
+  margin-top:16px;padding:14px 16px;
+  background:rgba(255,193,7,.08);border-left:2px solid var(--gold);
+  border-radius:0 6px 6px 0;
+}
+.voz-example p{font-family:var(--serif);font-style:italic;font-size:13px;color:rgba(255,255,255,.7);line-height:1.6}
+.claims-row{display:flex;flex-direction:column;gap:12px;margin-top:16px}
+.claim-pill{
+  display:inline-flex;align-items:center;gap:12px;
+  padding:14px 20px;border-radius:8px;
+  border:1px solid rgba(255,255,255,.12);
+  transition:border-color .2s;cursor:default;
+}
+.claim-pill:hover{border-color:rgba(255,193,7,.4)}
+.claim-pill.primary{background:rgba(255,193,7,.1);border-color:rgba(255,193,7,.3)}
+.claim-pill .claim-text{font-family:var(--serif);font-style:italic;font-size:16px;color:var(--white)}
+.claim-pill.primary .claim-text{color:var(--gold-light);font-size:18px}
+.claim-pill .claim-badge{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.3)}
+.claim-pill.primary .claim-badge{color:var(--gold);opacity:.8}
+
+/* ─── SECCIONES ─── */
+#secciones{background:var(--bg-soft)}
+.sections-intro{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+.sections-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:0}
+.section-card{
+  background:var(--white);border-radius:12px;padding:24px 20px;
+  border:1px solid rgba(13,59,102,.07);
+  transition:transform .2s,box-shadow .2s,border-color .2s;
+  cursor:default;
+}
+.section-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 12px 32px rgba(13,59,102,.1);
+  border-color:rgba(255,193,7,.4);
+}
+.section-card:hover .section-card-icon{background:var(--gold)}
+.section-card-icon{
+  width:44px;height:44px;border-radius:10px;
+  background:var(--navy);display:flex;align-items:center;justify-content:center;
+  margin-bottom:16px;transition:background .2s;
+}
+.section-card-name{font-family:var(--mono);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:var(--navy);margin-bottom:6px}
+.section-card-desc{font-size:12px;line-height:1.6;color:rgba(51,51,51,.5)}
+
+/* ─── NAVBAR MOCKUP ─── */
+#navbar-section{background:var(--white)}
+.navbar-mockup{
+  background:var(--white);border:1px solid rgba(13,59,102,.1);
+  border-radius:12px;overflow:hidden;box-shadow:0 8px 40px rgba(13,59,102,.08);
+}
+.mockup-bar{
+  background:rgba(13,59,102,.03);border-bottom:1px solid rgba(13,59,102,.08);
+  display:flex;align-items:center;padding:12px 16px;gap:8px;
+}
+.mockup-dot{width:10px;height:10px;border-radius:50%}
+.mockup-nav-inner{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 32px;height:60px;
+}
+.mockup-logo{font-family:var(--serif);font-size:20px;font-weight:700;color:var(--navy)}
+.mockup-links{display:flex;gap:24px}
+.mockup-link{font-family:var(--mono);font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:1.2px;color:rgba(13,59,102,.5)}
+.mockup-link.active{color:var(--navy);border-bottom:2px solid var(--gold);padding-bottom:2px}
+.mockup-cta{
+  background:var(--navy);color:var(--white);
+  font-family:var(--mono);font-size:10px;font-weight:700;
+  text-transform:uppercase;letter-spacing:1.2px;
+  padding:8px 20px;border-radius:4px;
+}
+
+/* ─── APLICACIONES ─── */
+#aplicaciones{background:var(--navy-deep);padding-bottom:0}
+.apps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-bottom:64px}
+.app-card{
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);
+  border-radius:16px;padding:36px 28px;
+  display:flex;flex-direction:column;gap:20px;
+}
+.app-label{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:4px}
+.app-title{font-family:var(--serif);font-size:22px;font-weight:700;color:var(--white)}
+.app-desc{font-size:13px;line-height:1.7;color:rgba(255,255,255,.5)}
+/* Favicon mockup */
+.favicon-demo{display:flex;gap:12px;align-items:center}
+.favicon-lg{width:64px;height:64px;border-radius:14px;background:var(--white);display:flex;align-items:center;justify-content:center}
+.favicon-md{width:32px;height:32px;border-radius:7px;background:var(--white);display:flex;align-items:center;justify-content:center}
+.favicon-sm{width:16px;height:16px;border-radius:3px;background:var(--white);display:flex;align-items:center;justify-content:center}
+/* Newsletter mockup */
+.newsletter-preview{
+  background:var(--white);border-radius:8px;overflow:hidden;
+}
+.nl-header{background:var(--navy);padding:20px 24px;display:flex;align-items:center;justify-content:space-between}
+.nl-logo{font-family:var(--serif);font-size:18px;font-weight:700;color:var(--white)}
+.nl-edition{font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.4)}
+.nl-gold-bar{height:3px;background:linear-gradient(90deg,var(--gold),var(--gold-light),var(--gold))}
+.nl-body{padding:16px 24px}
+.nl-headline{font-family:var(--serif);font-size:14px;font-weight:700;color:var(--navy);margin-bottom:6px}
+.nl-text{font-size:11px;line-height:1.6;color:rgba(51,51,51,.5)}
+/* Social profile mockup */
+.social-preview{
+  background:var(--bg-soft);border-radius:8px;overflow:hidden;
+}
+.social-cover{
+  height:80px;
+  background:linear-gradient(135deg,var(--navy) 0%,#1a5a9a 50%,#0D3B66 100%);
+  position:relative;display:flex;align-items:flex-end;padding:12px 16px;
+}
+.social-cover-text{font-family:var(--serif);font-size:10px;font-style:italic;color:rgba(255,255,255,.3)}
+.social-cover::after{
+  content:'';position:absolute;inset:0;
+  background-image:repeating-linear-gradient(45deg,transparent,transparent 8px,rgba(255,193,7,.04) 8px,rgba(255,193,7,.04) 9px);
+}
+.social-profile-inner{padding:8px 16px 16px;display:flex;flex-direction:column;gap:4px}
+.social-avatar{
+  width:40px;height:40px;border-radius:50%;
+  background:var(--navy);border:3px solid var(--white);
+  display:flex;align-items:center;justify-content:center;
+  margin-top:-20px;position:relative;z-index:1;
+}
+.social-name{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--navy)}
+.social-handle{font-size:11px;color:rgba(51,51,51,.4);font-family:var(--mono)}
+.social-bio{font-family:var(--serif);font-style:italic;font-size:11px;color:rgba(51,51,51,.6);line-height:1.5;margin-top:4px}
+
+/* ─── EQUIPO SECTION ─── */
+#equipo{background:var(--bg-soft)}
+.equipo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.equipo-col{background:var(--white);border-radius:12px;padding:28px 24px;border:1px solid rgba(13,59,102,.07)}
+.equipo-col-title{
+  font-family:var(--mono);font-size:10px;font-weight:700;
+  text-transform:uppercase;letter-spacing:2px;
+  color:var(--gold-dark);margin-bottom:16px;
+  padding-bottom:12px;border-bottom:1px solid rgba(255,193,7,.2);
+}
+.equipo-row{display:flex;flex-direction:column;gap:10px}
+.equipo-item{display:flex;flex-direction:column;gap:2px;padding:10px 0;border-bottom:1px solid rgba(13,59,102,.05)}
+.equipo-item:last-child{border-bottom:none}
+.equipo-role{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--navy)}
+.equipo-func{font-size:12px;line-height:1.5;color:rgba(51,51,51,.5)}
+
+/* ─── GRADIENT IMAGE CARDS ─── */
+.gradient-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px}
+.gradient-card{
+  border-radius:16px;overflow:hidden;aspect-ratio:4/5;
+  position:relative;display:flex;flex-direction:column;justify-content:flex-end;
+  padding:28px;
+}
+.gradient-card-overlay{position:absolute;inset:0}
+.gradient-card-content{position:relative;z-index:1}
+.gradient-card-tag{
+  font-family:var(--mono);font-size:9px;font-weight:700;
+  text-transform:uppercase;letter-spacing:2px;
+  color:var(--gold);margin-bottom:8px;display:block;
+}
+.gradient-card-title{font-family:var(--serif);font-size:22px;font-weight:700;color:var(--white);line-height:1.2;margin-bottom:8px}
+.gradient-card-sub{font-size:12px;color:rgba(255,255,255,.55);line-height:1.5}
+
+/* ─── FOOTER ─── */
+footer{
+  background:var(--navy-deep);padding:56px 0 32px;
+  border-top:1px solid rgba(255,255,255,.06);
+}
+.footer-inner{
+  max-width:1100px;margin:0 auto;padding:0 48px;
+  display:flex;flex-direction:column;gap:40px;
+}
+.footer-top{display:flex;justify-content:space-between;align-items:flex-start}
+.footer-brand{}
+.footer-logo{font-family:var(--serif);font-size:28px;font-weight:700;color:var(--white);margin-bottom:8px}
+.footer-claim{font-family:var(--serif);font-style:italic;font-size:14px;color:rgba(255,255,255,.35)}
+.footer-divider{height:1px;background:rgba(255,255,255,.08)}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center}
+.footer-copy{font-family:var(--mono);font-size:10px;color:rgba(255,255,255,.2);letter-spacing:1px}
+.footer-version{
+  font-family:var(--mono);font-size:10px;letter-spacing:1px;
+  color:var(--gold);opacity:.5;
+}
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.animate{animation:fadeUp .7s both}
+.d1{animation-delay:.1s}.d2{animation-delay:.2s}.d3{animation-delay:.3s}.d4{animation-delay:.4s}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:900px){
+  nav{padding:0 24px}
+  .nav-links{display:none}
+  .container{padding:0 24px}
+  .palette-grid{grid-template-columns:repeat(3,1fr)}
+  .sections-grid{grid-template-columns:repeat(2,1fr)}
+  .logo-grid,.apps-grid,.gradient-cards,.equipo-grid{grid-template-columns:1fr}
+  .voz-grid,.sections-intro{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ NAVBAR ═══ -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">
+    <span class="gold-dot"></span>Lead Nacional
+  </a>
+  <ul class="nav-links">
+    <li><a href="#logo">Logo</a></li>
+    <li><a href="#colores">Colores</a></li>
+    <li><a href="#tipografia">Tipografía</a></li>
+    <li><a href="#voz">Voz</a></li>
+    <li><a href="#secciones">Secciones</a></li>
+    <li><a href="#aplicaciones">Aplicaciones</a></li>
+  </ul>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section id="hero">
+  <div class="hero-texture"></div>
+  <div class="hero-grid"></div>
+
+  <div class="hero-eyebrow animate">Guía de Marca — 2025</div>
+
+  <!-- SVG Logo Principal -->
+  <svg class="hero-logo-svg animate d1" width="360" height="100" viewBox="0 0 360 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Lead Nacional wordmark">
+    <text font-family="'Playfair Display', Georgia, serif" font-size="80" font-weight="700" fill="#FFFFFF" x="0" y="78" letter-spacing="-2">Lead</text>
+    <rect x="0" y="90" width="280" height="2.5" fill="#FFC107"/>
+    <rect x="288" y="90" width="8" height="2.5" fill="#FFC107" opacity=".4"/>
+    <rect x="304" y="90" width="4" height="2.5" fill="#FFC107" opacity=".2"/>
+  </svg>
+
+  <p style="font-family:'Montserrat',sans-serif;font-size:10px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:4px" class="animate d2">Nacional</p>
+
+  <div class="hero-divider animate d3"></div>
+
+  <p class="hero-claim animate d3">"La línea que marca la diferencia."</p>
+  <p class="hero-claim-alt animate d4">Periodismo · Análisis · Liderazgo Editorial</p>
+
+  <div class="scroll-cue">
+    <span>Explorar</span>
+    <svg width="16" height="24" viewBox="0 0 16 24" fill="none">
+      <rect x="5.5" y="3" width="5" height="9" rx="2.5" stroke="white" stroke-width="1.5"/>
+      <line x1="8" y1="16" x2="8" y2="21" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+      <path d="M5 18.5L8 21.5L11 18.5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ═══ LOGO ═══ -->
+<section id="logo">
+  <div class="container">
+    <span class="section-tag dark">01 — Identidad Visual</span>
+    <h2 class="section-title">El Logo</h2>
+    <p class="section-lead">El wordmark es la firma central del medio. Playfair Display evoca autoridad editorial. La línea dorada inferior es la "lead" — el trazo que define la diferencia.</p>
+
+    <div class="logo-grid">
+      <!-- Versión Principal -->
+      <div class="logo-card on-navy">
+        <svg width="200" height="64" viewBox="0 0 200 64" fill="none">
+          <text font-family="'Playfair Display',Georgia,serif" font-size="52" font-weight="700" fill="#FFFFFF" x="0" y="50" letter-spacing="-1">Lead</text>
+          <rect x="0" y="57" width="156" height="2" fill="#FFC107"/>
+          <rect x="162" y="57" width="5" height="2" fill="#FFC107" opacity=".4"/>
+        </svg>
+        <span class="logo-label">Versión Principal</span>
+      </div>
+
+      <!-- Versión con bajada -->
+      <div class="logo-card on-white">
+        <svg width="200" height="76" viewBox="0 0 200 76" fill="none">
+          <text font-family="'Playfair Display',Georgia,serif" font-size="48" font-weight="700" fill="#0D3B66" x="0" y="48" letter-spacing="-1">Lead</text>
+          <rect x="0" y="55" width="148" height="2" fill="#FFC107"/>
+          <text font-family="'Montserrat',sans-serif" font-size="10" font-weight="600" fill="#0D3B66" x="1" y="72" letter-spacing="3" opacity=".5">NACIONAL</text>
+        </svg>
+        <span class="logo-label">Con Bajada</span>
+      </div>
+
+      <!-- Favicon / Símbolo -->
+      <div class="logo-card on-gold">
+        <svg width="72" height="72" viewBox="0 0 72 72" fill="none">
+          <rect width="72" height="72" rx="16" fill="white"/>
+          <text font-family="'Playfair Display',Georgia,serif" font-size="46" font-weight="700" fill="#0D3B66" x="10" y="54" letter-spacing="-1">L</text>
+          <rect x="10" y="60" width="34" height="2.5" fill="#FFC107"/>
+        </svg>
+        <span class="logo-label">Favicon / Ícono</span>
+      </div>
+    </div>
+
+    <!-- Zona de exclusión info -->
+    <div style="margin-top:32px;padding:20px 28px;background:var(--white);border-radius:10px;border:1px solid rgba(13,59,102,.08);display:flex;align-items:center;gap:24px">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+        <circle cx="16" cy="16" r="14" stroke="#0D3B66" stroke-width="1.5" stroke-dasharray="3 2" opacity=".3"/>
+        <rect x="8" y="14.5" width="16" height="3" rx="1.5" fill="#FFC107"/>
+        <rect x="14.5" y="8" width="3" height="16" rx="1.5" fill="#0D3B66" opacity=".3"/>
+      </svg>
+      <div>
+        <p style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--navy);margin-bottom:4px">Zona de Exclusión</p>
+        <p style="font-size:13px;color:rgba(51,51,51,.55)">Mantener un espacio libre equivalente a la altura de la "L" en todos los lados del logo. No rotar, distorsionar ni cambiar colores del sistema.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ COLORES ═══ -->
+<section id="colores">
+  <div class="container">
+    <span class="section-tag dark">02 — Paleta de Color</span>
+    <h2 class="section-title">Colores Institucionales</h2>
+    <p class="section-lead">Navy y dorado: autoridad y relevancia. El blanco garantiza legibilidad. Los grises estructuran sin competir con la identidad cromática principal.</p>
+
+    <div class="palette-grid">
+      <div class="swatch">
+        <div class="swatch-color" style="background:#0D3B66"></div>
+        <div class="swatch-info">
+          <p class="swatch-name">Azul Petróleo</p>
+          <p class="swatch-hex">#0D3B66</p>
+          <p class="swatch-use">Primario — Fondos, títulos, logo</p>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#FFC107"></div>
+        <div class="swatch-info">
+          <p class="swatch-name">Dorado Suave</p>
+          <p class="swatch-hex">#FFC107</p>
+          <p class="swatch-use">Secundario — Énfasis, líneas, CTAs</p>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#FFFFFF;border:1px solid #eee"></div>
+        <div class="swatch-info">
+          <p class="swatch-name">Blanco Puro</p>
+          <p class="swatch-hex">#FFFFFF</p>
+          <p class="swatch-use">Neutro — Fondos, texto sobre navy</p>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#333333"></div>
+        <div class="swatch-info">
+          <p class="swatch-name">Gris Texto</p>
+          <p class="swatch-hex">#333333</p>
+          <p class="swatch-use">Texto principal — Cuerpo editorial</p>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#F5F5F5;border:1px solid #eee"></div>
+        <div class="swatch-info">
+          <p class="swatch-name">Gris Claro</p>
+          <p class="swatch-hex">#F5F5F5</p>
+          <p class="swatch-use">Fondo suave — Secciones, cards</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Gradient Overlays Demo -->
+    <h3 style="font-family:var(--serif);font-size:22px;font-weight:700;color:var(--navy);margin-bottom:8px;margin-top:48px">Gradientes Editoriales</h3>
+    <p style="font-size:14px;color:rgba(51,51,51,.55);margin-bottom:24px">Para uso sobre imágenes de portada, fondos de secciones y separadores visuales.</p>
+    <div class="gradient-cards">
+      <div class="gradient-card">
+        <div class="gradient-card-overlay" style="background:linear-gradient(160deg,#0D3B66 0%,#1a5a9a 40%,rgba(13,59,102,.85) 100%)"></div>
+        <!-- Patrón de ruido visual sutil -->
+        <div style="position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 40px,rgba(255,255,255,.015) 40px,rgba(255,255,255,.015) 41px);"></div>
+        <div class="gradient-card-content">
+          <span class="gradient-card-tag">Navy Editorial</span>
+          <h4 class="gradient-card-title">Autoridad<br>y Profundidad</h4>
+          <p class="gradient-card-sub">Para portadas principales, heroes y coberturas especiales</p>
+        </div>
+      </div>
+      <div class="gradient-card">
+        <div class="gradient-card-overlay" style="background:linear-gradient(135deg,#081f38 0%,#0D3B66 60%,rgba(255,193,7,.15) 100%)"></div>
+        <div style="position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,transparent,transparent 30px,rgba(255,193,7,.03) 30px,rgba(255,193,7,.03) 31px);"></div>
+        <div class="gradient-card-content">
+          <span class="gradient-card-tag">Navy + Dorado</span>
+          <h4 class="gradient-card-title">Criterio<br>y Liderazgo</h4>
+          <p class="gradient-card-sub">Para secciones de análisis, entrevistas y reportajes</p>
+        </div>
+      </div>
+      <div class="gradient-card">
+        <div class="gradient-card-overlay" style="background:linear-gradient(180deg,rgba(13,59,102,.95) 0%,rgba(8,31,56,.98) 100%)"></div>
+        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,#FFC107,transparent)"></div>
+        <div style="position:absolute;inset:0;background-image:radial-gradient(circle at 30% 70%,rgba(255,193,7,.08) 0,transparent 60%);"></div>
+        <div class="gradient-card-content">
+          <span class="gradient-card-tag">Deep Navy</span>
+          <h4 class="gradient-card-title">Noche<br>Informativa</h4>
+          <p class="gradient-card-sub">Para newsletters nocturnos, cierres y editoriales</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="usage-grid" style="margin-top:40px">
+      <div class="usage-card">
+        <h4>🟡 Dorado — Uso correcto</h4>
+        <p>Líneas editoriales, énfasis en titulares, CTAs, hover states, ícono del favicon, separadores visuales clave.</p>
+      </div>
+      <div class="usage-card">
+        <h4>🔵 Navy — Uso correcto</h4>
+        <p>Fondos oscuros, navbar, logo principal, texto sobre blanco/gris claro, iconos, bordes sutiles.</p>
+      </div>
+      <div class="usage-card">
+        <h4>⚪ Blanco — Uso correcto</h4>
+        <p>Texto sobre navy, fondos de artículos, cards limpias, versión negativa del logo sobre fondos oscuros.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TIPOGRAFÍA ═══ -->
+<section id="tipografia">
+  <div class="container">
+    <span class="section-tag dark">03 — Sistema Tipográfico</span>
+    <h2 class="section-title">Tipografías</h2>
+    <p class="section-lead">Tres familias con roles precisos: Playfair para identidad y titular, Lato para cuerpo legible, Montserrat para navegación y etiquetas funcionales.</p>
+
+    <div class="type-showcase">
+
+      <!-- Playfair Display -->
+      <div class="type-block">
+        <div class="type-meta">
+          <span class="type-tag">Titular</span>
+          <span class="type-family">Playfair Display · Google Fonts · Serif</span>
+        </div>
+        <p class="type-sample-playfair">El periodismo<br>con <em>peso específico.</em></p>
+        <div class="type-scale" style="margin-top:24px">
+          <div class="type-scale-row">
+            <span class="type-scale-label">H1 — 64px</span>
+            <span style="font-family:var(--serif);font-size:28px;font-weight:700;color:var(--navy)">Análisis en profundidad</span>
+          </div>
+          <div class="type-scale-row">
+            <span class="type-scale-label">H2 — 40px</span>
+            <span style="font-family:var(--serif);font-size:22px;font-weight:700;color:var(--navy)">Chile Hoy — Economía y poder</span>
+          </div>
+          <div class="type-scale-row">
+            <span class="type-scale-label">H3 — 28px</span>
+            <span style="font-family:var(--serif);font-size:17px;font-weight:600;color:var(--navy)">Cuando el dato importa más que el titular</span>
+          </div>
+          <div class="type-scale-row">
+            <span class="type-scale-label">Italic — Cita</span>
+            <span style="font-family:var(--serif);font-size:15px;font-style:italic;color:rgba(51,51,51,.6)">"Lo esencial, primero."</span>
+          </div>
+        </div>
+        <div class="type-weights" style="margin-top:24px">
+          <div class="type-weight-item">
+            <span style="font-family:var(--mono);font-size:9px;color:rgba(51,51,51,.35);letter-spacing:1.5px;text-transform:uppercase">Regular 400</span>
+            <span style="font-family:var(--serif);font-size:18px;font-weight:400;color:var(--navy)">Lead Nacional</span>
+          </div>
+          <div class="type-weight-item">
+            <span style="font-family:var(--mono);font-size:9px;color:rgba(51,51,51,.35);letter-spacing:1.5px;text-transform:uppercase">SemiBold 600</span>
+            <span style="font-family:var(--serif);font-size:18px;font-weight:600;color:var(--navy)">Lead Nacional</span>
+          </div>
+          <div class="type-weight-item">
+            <span style="font-family:var(--mono);font-size:9px;color:rgba(51,51,51,.35);letter-spacing:1.5px;text-transform:uppercase">Bold 700</span>
+            <span style="font-family:var(--serif);font-size:18px;font-weight:700;color:var(--navy)">Lead Nacional</span>
+          </div>
+          <div class="type-weight-item">
+            <span style="font-family:var(--mono);font-size:9px;color:rgba(51,51,51,.35);letter-spacing:1.5px;text-transform:uppercase">Italic</span>
+            <span style="font-family:var(--serif);font-size:18px;font-weight:400;font-style:italic;color:var(--navy)">Lead Nacional</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lato -->
+      <div class="type-block">
+        <div class="type-meta">
+          <span class="type-tag" style="background:var(--bg-soft);color:var(--navy)">Cuerpo</span>
+          <span class="type-family">Lato · Google Fonts · Sans-serif</span>
+        </div>
+        <p style="font-family:var(--sans);font-size:18px;line-height:1.75;color:var(--text);max-width:640px">
+          El análisis riguroso parte de la observación paciente. En Lead Nacional, cada nota busca contextualizar antes que impactar — porque la profundidad es lo que distingue al periodismo del ruido informativo contemporáneo.
+        </p>
+        <div class="type-scale" style="margin-top:20px">
+          <div class="type-scale-row">
+            <span class="type-scale-label">Lead — 20px</span>
+            <span style="font-size:16px;line-height:1.7;color:var(--text)">Párrafo de apertura o bajada de nota</span>
+          </div>
+          <div class="type-scale-row">
+            <span class="type-scale-label">Body — 16px</span>
+            <span style="font-size:14px;line-height:1.7;color:rgba(51,51,51,.7)">Cuerpo principal del artículo o sección</span>
+          </div>
+          <div class="type-scale-row">
+            <span class="type-scale-label">Caption — 12px</span>
+            <span style="font-size:11px;color:rgba(51,51,51,.4)">Pie de foto · Crédito · Metadatos</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Montserrat -->
+      <div class="type-block">
+        <div class="type-meta">
+          <span class="type-tag" style="background:var(--gold);color:var(--navy)">Navegación</span>
+          <span class="type-family">Montserrat · Google Fonts · Geométrico</span>
+        </div>
+        <p class="type-sample-mono">Informar · Interpretar · Liderar</p>
+        <div class="type-scale" style="margin-top:20px">
+          <div class="type-scale-row">
+            <span class="type-scale-label">Nav — 11px</span>
+            <span style="font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--navy)">Chile Hoy · En Foco · Panorama Global</span>
+          </div>
+          <div class="type-scale-row">
+            <span class="type-scale-label">Label — 10px</span>
+            <span style="font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold-dark)">Reportaje Especial</span>
+          </div>
+          <div class="type-scale-row">
+            <span class="type-scale-label">CTA — 13px</span>
+            <span style="font-family:var(--mono);font-size:13px;font-weight:700;background:var(--navy);color:var(--white);padding:8px 20px;border-radius:4px;display:inline-block">Suscribirse</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ VOZ EDITORIAL ═══ -->
+<section id="voz">
+  <div class="container">
+    <span class="section-tag">04 — Identidad Narrativa</span>
+    <h2 class="section-title white">Voz y Tono Editorial</h2>
+    <p class="section-lead white">Lead Nacional habla con criterio, no con urgencia. Con contexto, no con ruido. La voz es el alma del medio — define cómo se lee, no solo qué se dice.</p>
+
+    <div class="voz-grid">
+      <div class="voz-card">
+        <div class="voz-icon">
+          <!-- Ícono: Balance -->
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+            <circle cx="18" cy="6" r="3" stroke="#FFC107" stroke-width="1.5"/>
+            <line x1="18" y1="9" x2="18" y2="24" stroke="rgba(255,255,255,.3)" stroke-width="1.5"/>
+            <line x1="6" y1="24" x2="30" y2="24" stroke="rgba(255,255,255,.4)" stroke-width="1.5"/>
+            <line x1="6" y1="18" x2="6" y2="24" stroke="rgba(255,255,255,.3)" stroke-width="1.5"/>
+            <line x1="30" y1="18" x2="30" y2="24" stroke="rgba(255,255,255,.3)" stroke-width="1.5"/>
+            <ellipse cx="6" cy="18" rx="5" ry="3" stroke="#FFC107" stroke-width="1"/>
+            <ellipse cx="30" cy="18" rx="5" ry="3" stroke="rgba(255,255,255,.4)" stroke-width="1"/>
+          </svg>
+        </div>
+        <h3 class="voz-title">Formal pero Accesible</h3>
+        <p class="voz-desc">Lenguaje cuidado que no excluye. Vocabulario preciso sin tecnicismos innecesarios. El lector es inteligente; Lead lo trata como tal.</p>
+        <div class="voz-example">
+          <p>"El indicador cayó cuatro puntos en el trimestre, lo que anticipa un ajuste en la política monetaria."</p>
+        </div>
+      </div>
+
+      <div class="voz-card">
+        <div class="voz-icon">
+          <!-- Ícono: Lupa con ángulo -->
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+            <circle cx="14" cy="14" r="9" stroke="#FFC107" stroke-width="1.5"/>
+            <line x1="21" y1="21" x2="30" y2="30" stroke="rgba(255,255,255,.4)" stroke-width="2" stroke-linecap="round"/>
+            <line x1="10" y1="14" x2="18" y2="14" stroke="rgba(255,255,255,.5)" stroke-width="1.2" stroke-linecap="round"/>
+            <line x1="14" y1="10" x2="14" y2="18" stroke="rgba(255,255,255,.5)" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3 class="voz-title">Crítico, no Confrontacional</h3>
+        <p class="voz-desc">Interpela sin atacar. Hace preguntas que otros evitan, pero construye el argumento con datos y contexto. El desacuerdo nace de los hechos.</p>
+        <div class="voz-example">
+          <p>"Las cifras oficiales no coinciden con lo que registra la encuesta. La diferencia merece explicación."</p>
+        </div>
+      </div>
+
+      <div class="voz-card">
+        <div class="voz-icon">
+          <!-- Ícono: Mapa/contexto -->
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+            <rect x="4" y="8" width="28" height="20" rx="4" stroke="#FFC107" stroke-width="1.5"/>
+            <line x1="4" y1="16" x2="32" y2="16" stroke="rgba(255,255,255,.2)" stroke-width="1"/>
+            <polyline points="8,20 14,13 20,17 28,11" stroke="rgba(255,255,255,.6)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <circle cx="28" cy="11" r="2" fill="#FFC107"/>
+          </svg>
+        </div>
+        <h3 class="voz-title">Contextual, más que Urgente</h3>
+        <p class="voz-desc">No corre detrás del minuto a minuto. Explica qué pasó, por qué importa y qué viene. El contexto es el valor diferencial de Lead.</p>
+        <div class="voz-example">
+          <p>"No es la primera vez que el congreso aprueba esto — y la historia sugiere que tampoco será la última."</p>
+        </div>
+      </div>
+
+      <div class="voz-card">
+        <div class="voz-icon">
+          <!-- Ícono: Corazón/pulso -->
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+            <polyline points="4,18 10,18 13,10 18,26 22,14 26,18 32,18" stroke="#FFC107" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+        </div>
+        <h3 class="voz-title">Humano con Profundidad</h3>
+        <p class="voz-desc">Las historias tienen personas detrás. Lead no olvida la dimensión humana de los datos y el análisis. La empatía es editorial, no sentimental.</p>
+        <div class="voz-example">
+          <p>"Detrás del número hay familias que reorganizaron su presupuesto sin saber si el siguiente mes traerá estabilidad."</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Claims -->
+    <div style="margin-top:48px">
+      <p style="font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:20px">Claims Editoriales</p>
+      <div class="claims-row">
+        <div class="claim-pill primary">
+          <span class="claim-badge">Principal</span>
+          <span class="claim-text">"La línea que marca la diferencia."</span>
+        </div>
+        <div class="claim-pill">
+          <span class="claim-badge">Alternativo</span>
+          <span class="claim-text">"Lo esencial, primero."</span>
+        </div>
+        <div class="claim-pill">
+          <span class="claim-badge">Alternativo</span>
+          <span class="claim-text">"Informar. Interpretar. Liderar."</span>
+        </div>
+        <div class="claim-pill">
+          <span class="claim-badge">Alternativo</span>
+          <span class="claim-text">"Periodismo con peso específico."</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SECCIONES ═══ -->
+<section id="secciones">
+  <div class="container">
+    <span class="section-tag dark">05 — Arquitectura de Contenidos</span>
+    <h2 class="section-title">Secciones del Medio</h2>
+    <p class="section-lead">Once secciones que cubren el espectro editorial completo — desde la actualidad nacional hasta la sostenibilidad y la innovación tecnológica.</p>
+
+    <div class="sections-grid">
+
+      <!-- Inicio -->
+      <div class="section-card">
+        <div class="section-card-icon">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+            <path d="M3 9.5L11 3L19 9.5V19a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z" stroke="white" stroke-width="1.4" stroke-linejoin="round"/>
+            <rect x="8" y="12" width="6" height="8" rx="1" stroke="white" stroke-width="1.2"/>
+          </svg>
+        </div>
+        <p class="section-card-name">Inicio</p>
+        <p class="section-card-desc">Acceso a lo último publicado y portada editorial del día</p>
+      </div>
+
+      <!-- Lo esencial -->
+      <div class="section-card">
+        <div class="section-card-icon">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+            <polygon points="11,2 13.5,8 20,8.5 15,13 16.5,20 11,16.5 5.5,20 7,13 2,8.5 8.5,8" stroke="white" stroke-width="1.4" stroke-linejoin="round" fill="none"/>
+          </svg>
+        </div>
+        <p class="section-card-name">Lo Esencial</p>
+        <p class="section-card-desc">Curaduría editorial semanal: análisis y datos clave</p>
+      </div>
+
+      <!-- Chile Hoy -->
+      <div class="section-card">
+        <div class="section-card-icon">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+            <path d="M11 3C6.6 3 3 6.6 3 11s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8z" stroke="white" stroke-width="1.4"/>
+            <path d="M8 3.5C8 3.5 7 7 7 11s1 7.5 1 7.5" stroke="white" stroke-width="1.2"/>
+            <path d="M3.5 9h15M3.5 13h15" stroke="white" stroke-width="1" stroke-dasharray="2 1.5"/>
+          </svg>
+        </div>
+        <p class="section-card-name">Chile Hoy</p>
+        <p class="section-card-desc">Noticias nacionales: economía, sociedad y poder</p>
+      </div>
+
+      <!-- Opinión -->
+      <div class="section-card">
+        <div class="section-card-icon">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+            <path d="M3 5a2 2 0 012-2h12a2 2 0 012 2v9a2 2 0 01-2 2H7l-4 4V5z" stroke="white" stroke-width="1.4" stroke-linejoin="round"/>
+            <line x1="7" y1="8" x2="15" y2="8" stroke="white" stroke-width="1.2" stroke-linecap="round"/>
+            <line x1="7" y1="11" x2="12" y2="11" stroke="white" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <p class="section-card-name">Opinión</p>
+        <p class="section-card-desc">Columnas, cartas y entrevistas de análisis</p>
+      </div>
+
+      <!-- En Foco -->
+      <div class="section-card">
+        <div class="section-card-icon">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+            <circle cx="11" cy="11" r="3" stroke="white" stroke-width="1.4"/>
+            <path d="M11 3v2M11 17v2M3 11h2M17 11h2" stroke="white" stroke-width="1.4" stroke-linecap="round"/>
+            <path d="M5.6 5.6l1.4 1.4M15 15l1.4 1.4M15 7l1.4-1.4M5.6 16.4L7 15" stroke="white" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <p class="section-card-name">En Foco</p>
+        <p class="section-card-desc">Reportajes especiales y coberturas profundas</p>
+      </div>
+
+      <!-- En Cifras -->
+      <div class="section-card">
+        <div class="section-card-icon">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+            <line x1="3" y1="19" x2="19" y2="19" stroke="white" stroke-width="1.4" stroke-linecap="round"/>
+            <rect x="4" y="12" width="3" height="7" rx="1" fill="white" opacity=".7"/>
+            <rect x="9" y="8" width="3" height="11" rx="1" fill="white" opacity=".85"/>
+            <rect x="14" y="4" width="3" height="15" rx="1" fill="white"/>
+            <polyline points="5.5,12 10.5,8 15.5,4" stroke="#FFC107" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+        </div>
+        <p class="section-card-name">En Cifras</p>
+        <p class="section-card-desc">Datos duros, gráficos e informes interpretados</p>
+      </div>
+
+      <!-- Panorama Global -->
+      <div class="section-card">
+        <div class="section-card-icon">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+            <circle cx="11" cy="11" r="8" stroke="white" stroke-width="1.4"/>
+            <path d="M3 9h16M3 13h16" stroke="white" stroke-width="1" stroke-dasharray="1.5 1.5"/>
+            <path d="M11 3c-3 2-5 5-5 8s2 6 5 8c3-2 5-5 5-8s-2-6-5-8z" stroke="white" stroke-width="1.2"/>
+          </svg>
+        </div>
+        <p class="section-card-name">Panorama Global</p>
+        <p class="section-card-desc">Noticias internacionales con foco en Latinoamérica</p>
+      </div>
+
+      <!-- Sustentabilidad -->
+      <div class="section-card">
+        <div class="section-card-icon">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+            <path d="M11 19c0 0-8-5-8-10a8 8 0 0116 0c0 5-8 10-8 10z" stroke="white" stroke-width="1.4" stroke-linejoin="round"/>
+            <path d="M11 8v6M8 12h6" stroke="white" stroke-width="1.3" stroke-linecap="round"/>
+            <circle cx="11" cy="11" r="2.5" stroke="#FFC107" stroke-width="1"/>
+          </svg>
+        </div>
+        <p class="section-card-name">Sustentabilidad</p>
+        <p class="section-card-desc">Medioambiente, recursos y políticas sostenibles</p>
+      </div>
+
+      <!-- Cultura Viva -->
+      <div class="section-card">
+        <div class="section-card-icon">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+            <path d="M5 19V9l6-7 6 7v10" stroke="white" stroke-width="1.4" stroke-linejoin="round"/>
+            <circle cx="11" cy="13" r="2.5" stroke="white" stroke-width="1.2"/>
+            <line x1="5" y1="9" x2="17" y2="9" stroke="white" stroke-width="1" opacity=".5"/>
+          </svg>
+        </div>
+        <p class="section-card-name">Cultura Viva</p>
+        <p class="section-card-desc">Arte, patrimonio, cine, libros e identidad nacional</p>
+      </div>
+
+      <!-- Nuevo Código -->
+      <div class="section-card">
+        <div class="section-card-icon">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+            <rect x="2" y="4" width="18" height="14" rx="2" stroke="white" stroke-width="1.4"/>
+            <polyline points="7,9 5,11 7,13" stroke="white" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <polyline points="15,9 17,11 15,13" stroke="white" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <line x1="12" y1="8" x2="10" y2="14" stroke="#FFC107" stroke-width="1.3" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <p class="section-card-name">Nuevo Código</p>
+        <p class="section-card-desc">Innovación, IA y transformación digital</p>
+      </div>
+
+      <!-- Equipo -->
+      <div class="section-card">
+        <div class="section-card-icon">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+            <circle cx="9" cy="7" r="3" stroke="white" stroke-width="1.4"/>
+            <path d="M3 19c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke="white" stroke-width="1.4" stroke-linecap="round"/>
+            <circle cx="17" cy="8" r="2" stroke="white" stroke-width="1.2" opacity=".6"/>
+            <path d="M17 14c1.7.5 3 2 3 4" stroke="white" stroke-width="1.2" stroke-linecap="round" opacity=".6"/>
+          </svg>
+        </div>
+        <p class="section-card-name">Equipo</p>
+        <p class="section-card-desc">Quiénes somos — el equipo y la visión editorial</p>
+      </div>
+
+      <!-- Contacto -->
+      <div class="section-card">
+        <div class="section-card-icon">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+            <rect x="2" y="5" width="18" height="13" rx="2" stroke="white" stroke-width="1.4"/>
+            <polyline points="2,7 11,13 20,7" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+        </div>
+        <p class="section-card-name">Contacto</p>
+        <p class="section-card-desc">Formulario para prensa, colaboradores y feedback</p>
+      </div>
+    </div>
+
+    <!-- Navbar Mockup -->
+    <h3 style="font-family:var(--serif);font-size:24px;font-weight:700;color:var(--navy);margin:60px 0 12px">Navbar Propuesto</h3>
+    <p style="font-size:14px;color:rgba(51,51,51,.5);margin-bottom:24px">Vista de escritorio del menú principal de navegación.</p>
+    <div class="navbar-mockup">
+      <div class="mockup-bar">
+        <div class="mockup-dot" style="background:#FF5F57"></div>
+        <div class="mockup-dot" style="background:#FEBC2E"></div>
+        <div class="mockup-dot" style="background:#28C840"></div>
+        <div style="flex:1;background:rgba(0,0,0,.05);height:24px;border-radius:4px;margin-left:8px;display:flex;align-items:center;padding:0 12px">
+          <span style="font-family:var(--mono);font-size:10px;color:rgba(0,0,0,.3)">leadnacional.cl</span>
+        </div>
+      </div>
+      <div style="padding:0 8px">
+        <div class="mockup-nav-inner">
+          <div class="mockup-logo">Lead <span style="font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:2px;opacity:.5">Nacional</span></div>
+          <div class="mockup-links">
+            <span class="mockup-link active">Inicio</span>
+            <span class="mockup-link">Lo Esencial</span>
+            <span class="mockup-link">Chile Hoy</span>
+            <span class="mockup-link">En Foco</span>
+            <span class="mockup-link">En Cifras</span>
+            <span class="mockup-link">Opinión</span>
+          </div>
+          <span class="mockup-cta">Suscribirse</span>
+        </div>
+        <div style="height:2px;background:linear-gradient(90deg,var(--navy) 0%,var(--gold) 30%,transparent 100%);opacity:.15;margin-bottom:8px"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ APLICACIONES ═══ -->
+<section id="aplicaciones">
+  <div class="container">
+    <span class="section-tag">06 — Aplicaciones de Marca</span>
+    <h2 class="section-title white">Cómo Vive el Branding</h2>
+    <p class="section-lead white">El sistema visual se adapta a cada superficie sin perder coherencia: desde el favicon de 16px hasta el encabezado del newsletter.</p>
+
+    <div class="apps-grid">
+      <!-- Favicon -->
+      <div class="app-card">
+        <div>
+          <p class="app-label">Favicon</p>
+          <p class="app-title">Símbolo "L"</p>
+          <p class="app-desc">La "L" en Playfair con línea dorada. Fondo blanco para máxima legibilidad en cualquier contexto de navegador.</p>
+        </div>
+        <div class="favicon-demo">
+          <div class="favicon-lg">
+            <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
+              <text font-family="'Playfair Display',Georgia,serif" font-size="36" font-weight="700" fill="#0D3B66" x="5" y="36">L</text>
+              <rect x="5" y="39" width="28" height="2" fill="#FFC107"/>
+            </svg>
+          </div>
+          <div class="favicon-md">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+              <text font-family="'Playfair Display',Georgia,serif" font-size="18" font-weight="700" fill="#0D3B66" x="2" y="18">L</text>
+              <rect x="2" y="20" width="14" height="1.5" fill="#FFC107"/>
+            </svg>
+          </div>
+          <div class="favicon-sm">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <text font-family="'Playfair Display',Georgia,serif" font-size="10" font-weight="700" fill="#0D3B66" x="1" y="10">L</text>
+            </svg>
+          </div>
+          <span style="font-family:var(--mono);font-size:10px;color:rgba(255,255,255,.3)">64 · 32 · 16px</span>
+        </div>
+      </div>
+
+      <!-- Newsletter -->
+      <div class="app-card">
+        <div>
+          <p class="app-label">Newsletter</p>
+          <p class="app-title">Header de Correo</p>
+          <p class="app-desc">Encabezado para el boletín semanal. Navy con línea dorada inferior y tipografía Playfair.</p>
+        </div>
+        <div class="newsletter-preview">
+          <div class="nl-header">
+            <span class="nl-logo">Lead Nacional</span>
+            <span class="nl-edition">Edición Semanal</span>
+          </div>
+          <div class="nl-gold-bar"></div>
+          <div class="nl-body">
+            <p class="nl-headline">Lo esencial de esta semana</p>
+            <p class="nl-text">Economía, política y contexto — curado para que llegues informado al próximo lunes.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Perfil RRSS -->
+      <div class="app-card">
+        <div>
+          <p class="app-label">Redes Sociales</p>
+          <p class="app-title">Perfil Institucional</p>
+          <p class="app-desc">Portada en navy con patrón sutil y avatar con "L" dorada. Claim en bio con el serif característico.</p>
+        </div>
+        <div class="social-preview">
+          <div class="social-cover">
+            <span class="social-cover-text">"La línea que marca la diferencia."</span>
+          </div>
+          <div class="social-profile-inner">
+            <div class="social-avatar">
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                <text font-family="'Playfair Display',Georgia,serif" font-size="22" font-weight="700" fill="white" x="4" y="23">L</text>
+                <rect x="4" y="25" width="18" height="1.5" fill="#FFC107"/>
+              </svg>
+            </div>
+            <span class="social-name">Lead Nacional</span>
+            <span class="social-handle">@leadnacional</span>
+            <span class="social-bio">Periodismo con peso específico.<br>Informar · Interpretar · Liderar.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ EQUIPO ═══ -->
+<section id="equipo" style="padding-top:80px">
+  <div class="container">
+    <span class="section-tag dark">07 — Estructura del Equipo</span>
+    <h2 class="section-title">Organización Interna</h2>
+    <p class="section-lead">Seis roles estratégicos que cubren dirección, periodismo, diseño, redes, gestión y apoyo editorial. Un medio pequeño con capacidad de largo alcance.</p>
+
+    <div class="equipo-grid">
+      <div class="equipo-col">
+        <p class="equipo-col-title">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="vertical-align:middle;margin-right:6px">
+            <polygon points="7,1 8.5,5 13,5 9.5,8 11,12 7,9.5 3,12 4.5,8 1,5 5.5,5" stroke="#e6a800" stroke-width="1" fill="none"/>
+          </svg>
+          Dirección
+        </p>
+        <div class="equipo-row">
+          <div class="equipo-item">
+            <span class="equipo-role">Directora General</span>
+            <span class="equipo-func">Define rumbo, línea editorial y toma decisiones clave</span>
+          </div>
+          <div class="equipo-item">
+            <span class="equipo-role">Editora en Jefe</span>
+            <span class="equipo-func">Coordina contenidos y asegura coherencia editorial</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="equipo-col">
+        <p class="equipo-col-title">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="vertical-align:middle;margin-right:6px">
+            <path d="M2 13V3l5-2 5 2v10" stroke="#e6a800" stroke-width="1" fill="none"/>
+            <rect x="5" y="8" width="4" height="5" rx=".5" stroke="#e6a800" stroke-width="1" fill="none"/>
+          </svg>
+          Redacción
+        </p>
+        <div class="equipo-row">
+          <div class="equipo-item">
+            <span class="equipo-role">Periodistas / Reporteras</span>
+            <span class="equipo-func">Redactan noticias, reportajes y entrevistas</span>
+          </div>
+          <div class="equipo-item">
+            <span class="equipo-role">Redactores Digitales</span>
+            <span class="equipo-func">Optimizan contenido para web, SEO y RRSS</span>
+          </div>
+          <div class="equipo-item">
+            <span class="equipo-role">Columnistas</span>
+            <span class="equipo-func">Opinión, análisis y especialidades temáticas</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="equipo-col">
+        <p class="equipo-col-title">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="vertical-align:middle;margin-right:6px">
+            <circle cx="7" cy="7" r="5.5" stroke="#e6a800" stroke-width="1" fill="none"/>
+            <circle cx="7" cy="7" r="2" stroke="#e6a800" stroke-width="1" fill="none"/>
+            <line x1="7" y1="1.5" x2="7" y2="4.5" stroke="#e6a800" stroke-width="1"/>
+            <line x1="7" y1="9.5" x2="7" y2="12.5" stroke="#e6a800" stroke-width="1"/>
+          </svg>
+          Producción y Gestión
+        </p>
+        <div class="equipo-row">
+          <div class="equipo-item">
+            <span class="equipo-role">Diseñadora Gráfica</span>
+            <span class="equipo-func">Carruseles, portadas, infografías y branding</span>
+          </div>
+          <div class="equipo-item">
+            <span class="equipo-role">Community Manager</span>
+            <span class="equipo-func">Publica y gestiona Instagram, LinkedIn y X</span>
+          </div>
+          <div class="equipo-item">
+            <span class="equipo-role">Alianzas / Comercial</span>
+            <span class="equipo-func">Marcas, convenios, patrocinios y sostenibilidad</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+          <svg width="120" height="40" viewBox="0 0 120 40" fill="none">
+            <text font-family="'Playfair Display',Georgia,serif" font-size="32" font-weight="700" fill="#FFFFFF" x="0" y="30">Lead</text>
+            <rect x="0" y="35" width="92" height="1.5" fill="#FFC107"/>
+          </svg>
+        </div>
+        <p class="footer-claim">"La línea que marca la diferencia."</p>
+        <p style="font-family:var(--mono);font-size:10px;color:rgba(255,255,255,.2);margin-top:12px;letter-spacing:1px">PERIODISMO · ANÁLISIS · LIDERAZGO</p>
+      </div>
+      <div>
+        <p style="font-family:var(--mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:rgba(255,255,255,.3);margin-bottom:16px">Secciones</p>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:6px 32px">
+          <span style="font-size:13px;color:rgba(255,255,255,.35);font-family:var(--mono)">Lo Esencial</span>
+          <span style="font-size:13px;color:rgba(255,255,255,.35);font-family:var(--mono)">En Cifras</span>
+          <span style="font-size:13px;color:rgba(255,255,255,.35);font-family:var(--mono)">Chile Hoy</span>
+          <span style="font-size:13px;color:rgba(255,255,255,.35);font-family:var(--mono)">Sustentabilidad</span>
+          <span style="font-size:13px;color:rgba(255,255,255,.35);font-family:var(--mono)">Opinión</span>
+          <span style="font-size:13px;color:rgba(255,255,255,.35);font-family:var(--mono)">Cultura Viva</span>
+          <span style="font-size:13px;color:rgba(255,255,255,.35);font-family:var(--mono)">En Foco</span>
+          <span style="font-size:13px;color:rgba(255,255,255,.35);font-family:var(--mono)">Nuevo Código</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-divider"></div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2025 Lead Nacional — Guía de Marca v1.0</span>
+      <span class="footer-version">BRANDING SYSTEM ▸ 2025</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Navbar scroll effect
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll',()=>{
+    navbar.classList.toggle('scrolled',window.scrollY>40);
+  });
+</script>
+</body>
+</html>
