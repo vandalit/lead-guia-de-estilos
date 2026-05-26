@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>En Foco — Opinión — Lead Nacional</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#0D3B66;--navy-d:#081f38;--gold:#FFC107;--gold-d:#E6A800;--white:#fff;--text:#1a1a1a;--muted:#666;--soft:#F5F5F5;--serif:'Playfair Display',Georgia,serif;--sans:'Lato',sans-serif;--mono:'Montserrat',sans-serif}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--text);background:var(--white);overflow-x:hidden}
+body.locked{overflow:hidden}
+#lock{position:fixed;inset:0;z-index:9999;background:var(--navy-d);display:flex;align-items:center;justify-content:center}
+#lock.out{animation:lout .6s both}
+@keyframes lout{to{opacity:0;transform:scale(1.03);visibility:hidden}}
+.lw{display:flex;flex-direction:column;align-items:center;animation:lup .7s .1s both}
+@keyframes lup{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+.l-wm{font-family:var(--serif);font-size:32px;font-weight:700;color:#fff;margin-bottom:4px}
+.l-rule{width:140px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:0 auto 6px}
+.l-sub{font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:40px}
+.l-pad{width:52px;height:52px;border-radius:14px;border:1.5px solid rgba(255,193,7,.2);background:rgba(255,193,7,.05);display:flex;align-items:center;justify-content:center;margin-bottom:24px}
+.l-pad.shake{animation:shk .4s both}
+@keyframes shk{0%,100%{transform:none}25%,75%{transform:translateX(-7px)}50%{transform:translateX(7px)}}
+.l-fi{position:relative;width:290px;margin-bottom:10px}
+.l-fi input{width:100%;padding:14px 44px 14px 18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:8px;font-family:var(--mono);font-size:13px;color:#fff;letter-spacing:2px;outline:none;caret-color:var(--gold);transition:border-color .2s}
+.l-fi input:focus{border-color:rgba(255,193,7,.4)}
+.l-fi input.bad{border-color:rgba(220,50,50,.5)}
+.l-eye{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:rgba(255,255,255,.3);padding:4px}
+.l-err{font-family:var(--mono);font-size:10px;color:rgba(220,60,60,.7);height:14px;margin-bottom:10px}
+.l-err.h{opacity:0}
+.l-btn{width:290px;padding:14px;background:var(--gold);border:none;border-radius:8px;font-family:var(--mono);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--navy-d);cursor:pointer}
+/* NAV */
+.anav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.97);border-bottom:1px solid rgba(13,59,102,.08);backdrop-filter:blur(12px)}
+.anav-inner{max-width:1100px;margin:0 auto;padding:0 32px;height:52px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.anav-back{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:1.2px;color:rgba(13,59,102,.45);text-decoration:none;transition:color .2s;flex-shrink:0}
+.anav-back:hover{color:var(--navy)}
+.anav-logo{font-family:var(--serif);font-size:18px;font-weight:700;color:var(--navy)}
+/* SECTION HERO */
+.sec-hero{padding:64px 0 48px;border-bottom:1px solid rgba(13,59,102,.08)}
+.sec-hero.dark{background:var(--navy-d);border-bottom:none}
+.container{max-width:1100px;margin:0 auto;padding:0 32px}
+.sec-eyebrow{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.sec-eyebrow::before{content:'';width:20px;height:1.5px;background:currentColor}
+.sec-title{font-family:var(--serif);font-size:clamp(32px,5vw,52px);font-weight:700;line-height:1.1;margin-bottom:12px}
+.sec-desc{font-size:15px;line-height:1.7;max-width:560px}
+/* FILTER TABS */
+.filter-bar{padding:20px 0;display:flex;align-items:center;gap:8px;overflow-x:auto;scrollbar-width:none;border-bottom:1px solid rgba(13,59,102,.07)}
+.filter-bar::-webkit-scrollbar{display:none}
+.filter-pill{font-family:var(--mono);font-size:9.5px;font-weight:600;text-transform:uppercase;letter-spacing:1.2px;padding:6px 14px;border-radius:20px;border:1px solid rgba(13,59,102,.12);color:rgba(13,59,102,.45);cursor:pointer;white-space:nowrap;transition:all .2s;text-decoration:none}
+.filter-pill:hover,.filter-pill.active{background:var(--navy);color:var(--white);border-color:var(--navy)}
+.filter-pill.active{background:var(--navy)}
+/* MAIN GRID */
+.sec-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;margin-top:0}
+.article-card{display:flex;gap:20px;padding:24px 0;border-bottom:1px solid rgba(13,59,102,.07);cursor:pointer;transition:background .15s;text-decoration:none;color:inherit}
+.article-card:hover .ac-title{color:var(--gold-d)}
+.ac-img{width:120px;flex-shrink:0;height:88px;border-radius:8px;overflow:hidden}
+.ac-img-bg{width:100%;height:100%;transition:transform .4s}
+.article-card:hover .ac-img-bg{transform:scale(1.06)}
+.ac-body{flex:1;display:flex;flex-direction:column;gap:5px;min-width:0}
+.ac-cat{font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold-d)}
+.ac-title{font-family:var(--serif);font-size:16px;font-weight:700;line-height:1.3;color:var(--text);transition:color .2s}
+.ac-meta{font-family:var(--mono);font-size:9px;color:var(--muted);display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:4px}
+.ac-dot{width:3px;height:3px;border-radius:50%;background:var(--muted)}
+/* FEATURED (primer card grande) */
+.article-card.featured{grid-column:1/-1;gap:28px}
+.article-card.featured .ac-img{width:340px;height:200px;flex-shrink:0}
+.article-card.featured .ac-title{font-size:22px}
+.article-card.featured .ac-body{justify-content:center}
+/* TWO COL LAYOUT */
+.sec-layout{display:grid;grid-template-columns:1fr 360px;gap:48px;align-items:start;padding:32px 0 0}
+.sec-articles{display:flex;flex-direction:column}
+/* SIDEBAR */
+.sec-sidebar{display:flex;flex-direction:column;gap:24px}
+.sidebar-block{background:var(--soft);border-radius:14px;padding:24px}
+.sb-head{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--navy);margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.sb-head::before{content:'';width:14px;height:1.5px;background:var(--gold)}
+.sb-items{display:flex;flex-direction:column;gap:12px}
+.sb-item{cursor:pointer;padding:12px 0;border-bottom:1px solid rgba(13,59,102,.07);text-decoration:none;display:block}
+.sb-item:last-child{border-bottom:none;padding-bottom:0}
+.sb-item:hover .sb-title{color:var(--navy)}
+.sb-cat{font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold-d);margin-bottom:4px}
+.sb-title{font-family:var(--serif);font-size:14px;font-weight:600;line-height:1.35;color:var(--text);transition:color .2s;margin-bottom:4px}
+.sb-time{font-family:var(--mono);font-size:8.5px;color:var(--muted)}
+/* PAGINATION CTA */
+.load-more{text-align:center;padding:40px 0 56px}
+.load-btn{font-family:var(--mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;padding:14px 32px;border:1.5px solid rgba(13,59,102,.15);border-radius:8px;background:transparent;color:var(--navy);cursor:pointer;transition:all .2s}
+.load-btn:hover{background:var(--navy);color:var(--white);border-color:var(--navy)}
+/* FOOTER */
+footer{background:var(--navy-d);padding:28px 0;border-top:1px solid rgba(255,255,255,.05)}
+.foot-inner{max-width:1100px;margin:0 auto;padding:0 32px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.foot-logo{font-family:var(--serif);font-size:18px;font-weight:700;color:#fff}
+.foot-copy{font-family:var(--mono);font-size:9px;color:rgba(255,255,255,.2)}
+.foot-back{font-family:var(--mono);font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,193,7,.5);text-decoration:none;transition:color .2s}
+.foot-back:hover{color:var(--gold)}
+@media(max-width:900px){.sec-layout{grid-template-columns:1fr}.sec-sidebar{display:none}.article-card.featured{flex-direction:column}.article-card.featured .ac-img{width:100%;height:200px}}
+@media(max-width:640px){.container{padding:0 16px}.anav-inner{padding:0 16px}.article-card{flex-direction:column}.ac-img{width:100%;height:160px}.article-card.featured .ac-img{height:180px}.sec-hero{padding:44px 0 32px}.sec-title{font-size:clamp(24px,7vw,36px)}}
+
+.opinion-hero{background:linear-gradient(160deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%);padding:64px 0 48px}
+.col-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;padding:40px 0 0}
+.col-card{border-radius:14px;overflow:hidden;border:1px solid rgba(13,59,102,.08);cursor:pointer;transition:transform .2s,box-shadow .2s;text-decoration:none;color:inherit;display:block}
+.col-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(13,59,102,.1)}
+.col-card-top{padding:28px 24px;background:var(--navy);position:relative}
+.col-card-top::before{content:'"';font-family:var(--serif);font-size:80px;color:rgba(255,193,7,.15);position:absolute;top:-8px;left:16px;line-height:1}
+.col-author-row{display:flex;align-items:center;gap:10px;margin-bottom:16px;position:relative;z-index:1}
+.col-avatar{width:36px;height:36px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:11px;font-weight:700;color:var(--navy-d);flex-shrink:0}
+.col-author-name{font-family:var(--mono);font-size:10px;font-weight:700;color:rgba(255,255,255,.8)}
+.col-author-role{font-family:var(--mono);font-size:8.5px;color:rgba(255,255,255,.35)}
+.col-title{font-family:var(--serif);font-size:17px;font-weight:700;line-height:1.35;color:var(--white);position:relative;z-index:1}
+.col-card-bot{padding:16px 24px;background:var(--soft)}
+.col-excerpt{font-size:13px;line-height:1.6;color:var(--muted);margin-bottom:12px}
+.col-time{font-family:var(--mono);font-size:8.5px;color:var(--muted)}
+@media(max-width:900px){.col-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.col-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body class="locked">
+<div id="lock">
+  <div class="lw">
+    <span class="l-wm">Lead Nacional</span><span class="l-rule"></span>
+    <span class="l-sub">Acceso al periódico</span>
+    <div class="l-pad" id="lpad"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="11" width="18" height="11" rx="3" stroke="#FFC107" stroke-width="1.5"/><path d="M7 11V7.5a5 5 0 0110 0V11" stroke="#FFC107" stroke-width="1.5" stroke-linecap="round"/><circle cx="12" cy="16.5" r="1.5" fill="#FFC107"/></svg></div>
+    <div class="l-fi"><input type="password" id="lpin" placeholder="Contraseña"/><button class="l-eye" id="leye"><svg width="16" height="16" viewBox="0 0 18 18" fill="none"><path d="M1 9s3-5 8-5 8 5 8 5-3 5-8 5-8-5-8-5z" stroke="currentColor" stroke-width="1.4"/><circle cx="9" cy="9" r="2.2" stroke="currentColor" stroke-width="1.4"/></svg></button></div>
+    <p class="l-err h" id="lerr">Contraseña incorrecta.</p>
+    <button class="l-btn" id="lbtn">Ingresar</button>
+  </div>
+</div>
+<nav class="anav">
+  <div class="anav-inner">
+    <a href="landing-medio.html" class="anav-back"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Inicio</a>
+    <span class="anav-logo">Lead Nacional</span>
+    <span style="font-family:var(--mono);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--gold-d)">En Foco — Opinión</span>
+  </div>
+</nav>
+<div id="site" style="opacity:0;transition:opacity .5s">
+
+<div class="opinion-hero">
+  <div class="container">
+    <div class="sec-eyebrow" style="color:var(--gold)">Análisis y opinión</div>
+    <h1 class="sec-title" style="color:var(--white)">En Foco</h1>
+    <p class="sec-desc" style="color:rgba(255,255,255,.5)">Columnas, entrevistas de análisis y cartas de opinión. Las voces que interpretan lo que el dato no puede decir solo.</p>
+  </div>
+</div>
+
+<div class="container">
+  <div class="col-grid">
+    <a href="nota-opinion.html" class="col-card">
+      <div class="col-card-top">
+        <div class="col-author-row">
+          <div class="col-avatar">AV</div>
+          <div><div class="col-author-name">Ana Vera</div><div class="col-author-role">Columnista · Lead Nacional</div></div>
+        </div>
+        <div class="col-title">"El silencio de los datos: cuando las cifras oficiales no cuentan la historia completa"</div>
+      </div>
+      <div class="col-card-bot">
+        <p class="col-excerpt">Sobre el hábito institucional de enfatizar los logros y silenciar los matices. Una reflexión sobre periodismo y transparencia.</p>
+        <div class="col-time">Hoy · 08:00 · 6 min de lectura</div>
+      </div>
+    </a>
+    <a href="nota-opinion.html" class="col-card">
+      <div class="col-card-top">
+        <div class="col-author-row">
+          <div class="col-avatar" style="background:rgba(255,255,255,.15)">RP</div>
+          <div><div class="col-author-name">Rodrigo Pinto</div><div class="col-author-role">Analista político</div></div>
+        </div>
+        <div class="col-title">"Democracia en tránsito: lo que el proceso constitucional nos dejó como sociedad"</div>
+      </div>
+      <div class="col-card-bot">
+        <p class="col-excerpt">Dos años después del segundo plebiscito, una lectura sobre qué aprendimos y qué seguimos evitando conversar.</p>
+        <div class="col-time">Ayer · 18:30 · 8 min</div>
+      </div>
+    </a>
+    <a href="nota-opinion.html" class="col-card">
+      <div class="col-card-top">
+        <div class="col-author-row">
+          <div class="col-avatar" style="background:rgba(255,255,255,.12)">VC</div>
+          <div><div class="col-author-name">Valentina Cruz</div><div class="col-author-role">Economista · U. de Chile</div></div>
+        </div>
+        <div class="col-title">"La trampa del corto plazo: por qué Chile sigue postergando la inversión en ciencia"</div>
+      </div>
+      <div class="col-card-bot">
+        <p class="col-excerpt">El gasto en I+D como porcentaje del PIB lleva diez años estancado. Las consecuencias para la próxima década serán visibles y costosas.</p>
+        <div class="col-time">Lun · 12:00 · 5 min</div>
+      </div>
+    </a>
+    <a href="nota-opinion.html" class="col-card">
+      <div class="col-card-top">
+        <div class="col-author-row">
+          <div class="col-avatar" style="background:rgba(255,255,255,.1)">MS</div>
+          <div><div class="col-author-name">Marcela Soto</div><div class="col-author-role">Abogada constitucional</div></div>
+        </div>
+        <div class="col-title">"El poder de los datos en el litigio climático: Chile ante los tribunales internacionales"</div>
+      </div>
+      <div class="col-card-bot">
+        <p class="col-excerpt">El litio y el agua ya no son solo asuntos de política interna. Los casos en La Haya y las Cortes de Derechos Humanos cambian el tablero.</p>
+        <div class="col-time">Dom · 10:00 · 7 min</div>
+      </div>
+    </a>
+    <a href="nota-opinion.html" class="col-card">
+      <div class="col-card-top">
+        <div class="col-author-row">
+          <div class="col-avatar" style="background:rgba(255,255,255,.1)">JL</div>
+          <div><div class="col-author-name">Jorge Lagos</div><div class="col-author-role">Sociólogo · UDP</div></div>
+        </div>
+        <div class="col-title">"La generación que no confía: cómo el escepticismo institucional redefine la política chilena"</div>
+      </div>
+      <div class="col-card-bot">
+        <p class="col-excerpt">Los menores de 35 años tienen los índices de confianza institucional más bajos en cuarenta años de registro. Y votan de otra manera.</p>
+        <div class="col-time">Sáb · 09:00 · 6 min</div>
+      </div>
+    </a>
+    <a href="nota-opinion.html" class="col-card">
+      <div class="col-card-top">
+        <div class="col-author-row">
+          <div class="col-avatar" style="background:rgba(255,255,255,.1)">CF</div>
+          <div><div class="col-author-name">Carla Fuentes</div><div class="col-author-role">Periodista · investigadora</div></div>
+        </div>
+        <div class="col-title">"Medios y democracia: la responsabilidad que no se puede subcontratar"</div>
+      </div>
+      <div class="col-card-bot">
+        <p class="col-excerpt">En tiempos de algoritmos y redes, la función del periodismo como contrapoder no desaparece. Se vuelve más urgente.</p>
+        <div class="col-time">Vie · 14:30 · 5 min</div>
+      </div>
+    </a>
+  </div>
+  <div class="load-more"><button class="load-btn">Ver más columnas</button></div>
+</div>
+
+<footer>
+  <div class="foot-inner">
+    <span class="foot-logo">Lead Nacional</span>
+    <a href="landing-medio.html" class="foot-back">← Volver al inicio</a>
+    <span class="foot-copy">© 2025 Lead Nacional</span>
+  </div>
+</footer>
+</div>
+<script>
+const PASS='contraseñadelead';
+const lock=document.getElementById('lock'),lpad=document.getElementById('lpad'),lpin=document.getElementById('lpin'),lbtn=document.getElementById('lbtn'),lerr=document.getElementById('lerr'),site=document.getElementById('site');
+function showSite(){lock.classList.add('out');site.style.opacity='1';document.body.classList.remove('locked')}
+if(sessionStorage.getItem('lead_auth')==='1'){lock.style.display='none';site.style.opacity='1';document.body.classList.remove('locked')}
+else setTimeout(()=>lpin.focus(),200);
+function tryPass(){if(lpin.value===PASS){sessionStorage.setItem('lead_auth','1');showSite()}else{lpin.classList.add('bad');lpad.classList.add('shake');lerr.classList.remove('h');lpin.value='';setTimeout(()=>{lpin.classList.remove('bad');lpad.classList.remove('shake')},500)}}
+lbtn.addEventListener('click',tryPass);lpin.addEventListener('keydown',e=>{if(e.key==='Enter')tryPass()});
+</script>
+</body></html>
