@@ -335,7 +335,7 @@ if(sessionStorage.getItem('lead_auth')==='1'){lock.style.display='none';site.sty
 else setTimeout(()=>lpin.focus(),200);
 function tryPass(){if(lpin.value===PASS){sessionStorage.setItem('lead_auth','1');showSite()}else{lpin.classList.add('bad');lpad.classList.add('shake');lerr.classList.remove('h');lpin.value='';setTimeout(()=>{lpin.classList.remove('bad');lpad.classList.remove('shake')},500)}}
 lbtn.addEventListener('click',tryPass);lpin.addEventListener('keydown',e=>{if(e.key==='Enter')tryPass()});
-window.addEventListener('scroll',()=>{const p=document.getElementById('prog');const h=document.documentElement.scrollHeight-window.innerHeight;p.style.width=(window.scrollY/h*100)+'%'});
+/* prog bar handled by anuncios.js */;
 </script>
 </body>
 </html>
