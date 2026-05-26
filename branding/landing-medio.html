@@ -1346,6 +1346,33 @@ const meses=['enero','febrero','marzo','abril','mayo','junio','julio','agosto','
 document.getElementById('navdate').textContent=`${dias[d.getDay()]}, ${d.getDate()} de ${meses[d.getMonth()]} ${d.getFullYear()}`;
 
 /* ── NAV SCROLL + ACTIVE ── */
+
+  // ── ARTICLE ROUTING ──
+  const routes = {
+    '.hero-cta':     'nota-economia.html',
+    '.art-featured': 'nota-terreno.html',
+    '.mm-podcast':   'nota-podcast.html',
+    '.mm-video':     'nota-economia.html',
+  };
+  Object.entries(routes).forEach(([sel,url])=>{
+    document.querySelectorAll(sel).forEach(el=>{
+      el.style.cursor='pointer';
+      el.addEventListener('click',()=>location.href=url);
+    });
+  });
+  const artDests=['nota-economia.html','nota-terreno.html','nota-opinion.html','nota-economia.html'];
+  document.querySelectorAll('.article-row').forEach((el,i)=>el.addEventListener('click',()=>location.href=artDests[i%artDests.length]));
+  const esencDests=['nota-economia.html','nota-opinion.html','nota-terreno.html','nota-podcast.html'];
+  document.querySelectorAll('.esencial-card').forEach((el,i)=>el.addEventListener('click',()=>location.href=esencDests[i%esencDests.length]));
+  const heroDests=['nota-economia.html','nota-terreno.html','nota-economia.html'];
+  document.querySelectorAll('.hero-card').forEach((el,i)=>el.addEventListener('click',()=>location.href=heroDests[i%heroDests.length]));
+  document.querySelectorAll('.pan-card').forEach(el=>el.addEventListener('click',()=>location.href='nota-economia.html'));
+  const mixDests=['nota-terreno.html','nota-terreno.html','nota-terreno.html','nota-opinion.html','nota-opinion.html','nota-opinion.html'];
+  document.querySelectorAll('.mix-item').forEach((el,i)=>el.addEventListener('click',()=>location.href=mixDests[i%mixDests.length]));
+  document.querySelectorAll('.ef-item').forEach(el=>el.addEventListener('click',()=>location.href='nota-opinion.html'));
+  document.querySelectorAll('.tw-item').forEach((el,i)=>{const d=['nota-economia.html','nota-terreno.html','nota-economia.html','nota-podcast.html'];el.addEventListener('click',()=>location.href=d[i%d.length]);});
+  document.querySelectorAll('.mm-gallery .mm-photo').forEach((el,i)=>el.addEventListener('click',()=>location.href=i===0?'nota-terreno.html':'nota-opinion.html'));
+
 const nav=document.getElementById('nav');
 window.addEventListener('scroll',()=>{
   nav.classList.toggle('sd',window.scrollY>80);
