@@ -196,7 +196,7 @@ footer{background:var(--navy-d);padding:28px 0;border-top:1px solid rgba(255,255
 const PASS='contraseñadelead';
 const lock=document.getElementById('lock'),lpad=document.getElementById('lpad'),lpin=document.getElementById('lpin'),lbtn=document.getElementById('lbtn'),lerr=document.getElementById('lerr'),site=document.getElementById('site');
 function showSite(){lock.classList.add('out');site.style.opacity='1';document.body.classList.remove('locked')}
-if(sessionStorage.getItem('lead_auth')==='1'){lock.style.display='none';site.style.opacity='1';document.body.classList.remove('locked')}
+if(true){lock.style.display='none';site.style.opacity='1';document.body.classList.remove('locked')}
 else setTimeout(()=>lpin.focus(),200);
 function tryPass(){if(lpin.value===PASS){sessionStorage.setItem('lead_auth','1');showSite()}else{lpin.classList.add('bad');lpad.classList.add('shake');lerr.classList.remove('h');lpin.value='';setTimeout(()=>{lpin.classList.remove('bad');lpad.classList.remove('shake')},500)}}
 lbtn.addEventListener('click',tryPass);lpin.addEventListener('keydown',e=>{if(e.key==='Enter')tryPass()});

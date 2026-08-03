@@ -295,7 +295,7 @@ const lpin=document.getElementById('lpin'),lbtn=document.getElementById('lbtn');
 const lerr=document.getElementById('lerr'),leye=document.getElementById('leye');
 const site=document.getElementById('site');
 function showSite(){lock.classList.add('out');site.style.opacity='1';document.body.classList.remove('locked')}
-if(sessionStorage.getItem('lead_auth')==='1'){lock.style.display='none';site.style.opacity='1';document.body.classList.remove('locked')}
+if(true){lock.style.display='none';site.style.opacity='1';document.body.classList.remove('locked')}
 else setTimeout(()=>lpin.focus(),200);
 function tryPass(){
   if(lpin.value===PASS){sessionStorage.setItem('lead_auth','1');showSite()}
